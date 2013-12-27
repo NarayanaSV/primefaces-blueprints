@@ -3,7 +3,7 @@ package com.packtpub.pf.blueprint.model;
 import java.util.Date;
 
 /**
- * @author Siva
+ * @author Ramkumar Pillai
  */
 public class User {
     private Integer id;
