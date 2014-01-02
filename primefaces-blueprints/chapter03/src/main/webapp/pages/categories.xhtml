@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<f:view contentType="text/html">
+    <h:form id="leftPanForm">
+        <p:accordionPanel>
+            <p:tab title="Categories">
+                <p:outputPanel id="categoryFormContiner">
+                    <p:dataGrid value="#{menuItemController.categories}" var="cats" style="border: none;">
+                        <p:column>
+                            <h:outputText value="#{cats.id}"/><br/>
+                            <h:outputText value="#{cats.name}"/>
+                        </p:column>
+                    </p:dataGrid>
+                </p:outputPanel>
+            </p:tab>
+            <p:tab title="Favorite Items">
+                <p:outputPanel id="favoriteFormContiner">
+                    <p:dataGrid value="#{menuItemController.categories}" var="cats">
+                        <p:column>
+                            <h:outputText value="#{cats.id}"/><br/>
+                            <h:outputText value="#{cats.name}"/>
+                        </p:column>
+                    </p:dataGrid>
+                </p:outputPanel>
+            </p:tab>
+        </p:accordionPanel>
+    </h:form>
+</f:view>
+</html>

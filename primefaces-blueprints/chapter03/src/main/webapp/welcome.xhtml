@@ -8,7 +8,12 @@
         <!-- Test contents Comment Head-->
     </ui:define>
 
+    <ui:define name="leftPan">
+        <ui:include src="pages/categories.xhtml"/>
+    </ui:define>
+
     <ui:define name="bodyContent">
+
         <h2>PrimeFaces Beginner's Guide : Chapter-01</h2>
         <h:form>
 
@@ -36,6 +41,23 @@
                 </h:panelGrid>
             </p:panel>
         </h:form>
+    </ui:define>
+    <ui:define name="rightPan">
+        <p:panelGrid columns="1">
+            <p:outputPanel id="ticketFormContiner">
+                <p:dataGrid value="#{menuItemController.lineItems}" var="cats" style="border: none;">
+                    <p:column>
+                        <h:outputText value="#{cats.id}"/><br/>
+                        <h:outputText value="#{cats.name}"/>
+                    </p:column>
+                </p:dataGrid>
+            </p:outputPanel>
+            <p:outputPanel>
+                <h:outputText value="Total : "/>
+                <h:outputLabel value="#{menuItemController.lineTotal}"/>
+            </p:outputPanel>
+        </p:panelGrid>
+
     </ui:define>
 </ui:composition>
 </html>

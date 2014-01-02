@@ -8,17 +8,17 @@ package com.packtpub.pf.blueprint.model;
  * To change this template use File | Settings | File Templates.
  */
 
-public class Catagory {
+public class Category {
     private Integer id;
     private String name;
     private Integer parentId;
     private boolean enabled;
 
-    private Catagory() {
+    private Category() {
 
     }
 
-    public Catagory(Integer id, String name, Integer parentId, boolean enabled) {
+    public Category(Integer id, String name, Integer parentId, boolean enabled) {
         this.id = id;
         this.name = name;
         this.parentId = parentId;

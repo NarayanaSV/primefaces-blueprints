@@ -4,7 +4,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions"
         >
 <f:view contentType="text/html" locale="en">
     <h:head title="PrimeFaces">
@@ -18,13 +17,14 @@
         <ui:insert name="head"/>
     </h:head>
     <h:body>
-        <pe:layout id="layout" fullPage="true" styleClass="mb_overlays" stateCookie="true">
+        <p:layout fullPage="true">
             <p:ajax event="resize"/>
-            <pe:layoutPane position="north">
-            </pe:layoutPane>
-            <pe:layoutPane position="west">
-            </pe:layoutPane>
-            <pe:layoutPane position="center">
+            <!--<p:layoutUnit position="north">-->
+            <!--</p:layoutUnit>-->
+            <p:layoutUnit position="west" collapsible="true" closable="true" gutter="1">
+                <ui:insert name="leftPan"/>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
                 <div class="wrapper">
                     <div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"
                          style="height: 80px; margin-bottom: 2px;">
@@ -35,12 +35,13 @@
                         <ui:insert name="bodyContent"/>
                     </div>
                 </div>
-            </pe:layoutPane>
-            <pe:layoutPane position="east">
-            </pe:layoutPane>
-            <pe:layoutPane position="south">
-            </pe:layoutPane>
-        </pe:layout>
+            </p:layoutUnit>
+            <p:layoutUnit position="east" collapsible="true" closable="true" gutter="1">
+                <ui:insert name="rightPan"/>
+            </p:layoutUnit>
+            <!--<p:layoutUnit position="south">-->
+            <!--</p:layoutUnit>-->
+        </p:layout>
 
     </h:body>
 </f:view>
