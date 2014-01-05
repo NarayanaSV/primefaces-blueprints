@@ -13,32 +13,16 @@
     </ui:define>
 
     <ui:define name="bodyContent">
-
-        <h2>PrimeFaces Beginner's Guide : Chapter-01</h2>
         <h:form>
-
-            <p:panel header="PrimeFaces Beginner's Guide : Chapter-01 Demos" style="width: 800px;">
-                <h:panelGrid columns="1">
-                    <p><h:link outcome="helloworld.jsf" value="Hello World"/></p>
-
-                    <p><h:link outcome="registration.jsf" value="User Registration Form with PrimeFaces Components"/>
-                    </p>
-
-                    <p><h:link outcome="registrationWithVal.jsf" value="User Registration with Validations"/></p>
-
-                    <p><h:link outcome="clientValidation.jsf" value="Client Side Validation"/></p>
-
-                    <p><h:link outcome="userDetails.jsf" value="Partial Processing"/></p>
-
-                    <p><h:link outcome="login.jsf" value="Updating View using Ajax"/></p>
-
-                    <p><h:link outcome="viewAjaxListener.jsf" value="Updating View using Ajax Listener"/></p>
-
-                    <p><h:link outcome="poll.jsf" value="Polling"/></p>
-
-                    <p><h:link outcome="remoteCommand.jsf" value="Remote Command"/></p>
-
-                </h:panelGrid>
+            <p:panel header="Menu Card" style="width: 99%;">
+                <p:outputPanel id="categoryFormContiner">
+                    <p:dataGrid value="#{menuItemController.categories}" var="menus" style="border: none;">
+                        <p:panel>
+                            <h:outputText value="#{menus.id}"/><br/>
+                            <h:outputText value="#{menus.name}"/>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:outputPanel>
             </p:panel>
         </h:form>
     </ui:define>
@@ -52,7 +36,7 @@
                     </p:column>
                 </p:dataGrid>
             </p:outputPanel>
-            <p:outputPanel>
+            <p:outputPanel rendered="#{menuItemController.lineTotal != 0}">
                 <h:outputText value="Total : "/>
                 <h:outputLabel value="#{menuItemController.lineTotal}"/>
             </p:outputPanel>

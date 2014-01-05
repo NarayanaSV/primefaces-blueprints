@@ -13,16 +13,19 @@ public class Category {
     private String name;
     private Integer parentId;
     private boolean enabled;
+    private String imagePath;
+    private String description;
 
     private Category() {
 
     }
 
-    public Category(Integer id, String name, Integer parentId, boolean enabled) {
+    public Category(Integer id, String name, Integer parentId, boolean enabled, String description) {
         this.id = id;
         this.name = name;
         this.parentId = parentId;
         this.enabled = enabled;
+        this.description = description;
     }
 
 
@@ -56,5 +59,21 @@ public class Category {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

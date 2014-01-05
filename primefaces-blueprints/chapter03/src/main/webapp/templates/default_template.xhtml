@@ -19,17 +19,17 @@
     <h:body>
         <p:layout fullPage="true">
             <p:ajax event="resize"/>
-            <!--<p:layoutUnit position="north">-->
-            <!--</p:layoutUnit>-->
+            <p:layoutUnit position="north">
+                <div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"
+                     style="height: 80px; margin-bottom: 2px;">
+                    <h1>PrimeFaces</h1>
+                </div>
+            </p:layoutUnit>
             <p:layoutUnit position="west" collapsible="true" closable="true" gutter="1">
                 <ui:insert name="leftPan"/>
             </p:layoutUnit>
             <p:layoutUnit position="center">
                 <div class="wrapper">
-                    <div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"
-                         style="height: 80px; margin-bottom: 2px;">
-                        <h1>PrimeFaces</h1>
-                    </div>
                     <div class="ui-panel ui-widget ui-widget-content ui-corner-all"
                          style="margin-bottom: 3px; min-height: 500px;">
                         <ui:insert name="bodyContent"/>

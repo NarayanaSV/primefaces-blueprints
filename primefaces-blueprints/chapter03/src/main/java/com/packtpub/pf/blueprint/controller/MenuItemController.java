@@ -31,8 +31,8 @@ public class MenuItemController {
 
     private void populateCategory() {
 
-        for (int i = 0; i <= 15; i++) {
-            categories.add(new Category(i, "category" + i, 0, true));
+        for (int i = 0; i < 15; i++) {
+            categories.add(new Category(i, "category" + i, 0, true, ""));
         }
 
         //instead we can populate from Database.
@@ -43,7 +43,7 @@ public class MenuItemController {
         Random rand = new Random(50);
         //instead we can populate from Database.
 
-        for (int i = 0; i <= 15; i++) {
+        for (int i = 0; i < 15; i++) {
             menuItems.add(new MenuItem(i, "Name" + i, "Name" + i, rand.nextDouble(), true, categoryId));
         }
     }
@@ -65,7 +65,15 @@ public class MenuItemController {
     private List<Category> categories = new ArrayList<Category>();
     private List<MenuItem> menuItems = new ArrayList<MenuItem>();
     private List<MenuItem> lineItems = new ArrayList<MenuItem>();
+    private List<MenuItem> favoriteItems = new ArrayList<MenuItem>();
 
+    public List<MenuItem> getFavoriteItems() {
+        return favoriteItems;
+    }
+
+    public void setFavoriteItems(List<MenuItem> favoriteItems) {
+        this.favoriteItems = favoriteItems;
+    }
 
     public Category getCategory() {
         return category;

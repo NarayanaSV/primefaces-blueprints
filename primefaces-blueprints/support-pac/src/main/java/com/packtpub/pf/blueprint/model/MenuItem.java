@@ -15,6 +15,7 @@ public class MenuItem {
     private double price;
     private boolean enabled;
     private Integer categoryId;
+    private String imagePath;
 
     public MenuItem(Integer id, String name, String displayName, double price, boolean enabled, Integer categoryId) {
         this.id = id;
@@ -72,6 +73,14 @@ public class MenuItem {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     @Override
