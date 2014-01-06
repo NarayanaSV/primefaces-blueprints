@@ -5,9 +5,9 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <f:view contentType="text/html">
     <h:form id="leftPanForm">
-        <p:accordionPanel>
+        <p:accordionPanel id="accord">
             <p:tab title="Categories">
-                <p:outputPanel id="categoryFormContiner">
+                <p:outputPanel>
                     <p:dataGrid value="#{menuItemController.categories}" var="cats" style="border: none;">
                         <p:commandLink style="a:link { text-decoration:none; }"
                                        update=":centerForm:menuItemContiner"
@@ -20,15 +20,13 @@
                     </p:dataGrid>
                 </p:outputPanel>
             </p:tab>
-            <p:tab title="Favorite Items">
-                <p:outputPanel id="favoriteFormContiner">
-                    <p:dataGrid value="#{menuItemController.favoriteItems}" var="mens">
-                        <p:panel>
-                            <h:outputText value="#{mens.id}"/><br/>
-                            <h:outputText value="#{mens.name}"/>
-                        </p:panel>
-                    </p:dataGrid>
-                </p:outputPanel>
+            <p:tab title="Favorite Items" id="favoriteFormContiner">
+                <p:dataGrid value="#{menuItemController.favoriteItems}" var="mens">
+                    <p:panel>
+                        <h:outputText value="#{mens.id}"/><br/>
+                        <h:outputText value="#{mens.name}"/>
+                    </p:panel>
+                </p:dataGrid>
             </p:tab>
         </p:accordionPanel>
     </h:form>

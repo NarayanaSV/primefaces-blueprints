@@ -50,6 +50,7 @@ public class MenuItemController {
     }
 
     public void addLineItem(int id, String displayName, double price) {
+        _log.info("Add to LineItem now id: " + id + ", DisplayName: " + displayName + ", Price: " + price);
         LineItem mi = new LineItem(id, displayName, 1, price);
         if (lineItems.contains(mi)) {
             //already added to ticket updating quantity...
@@ -71,7 +72,8 @@ public class MenuItemController {
         }
     }
 
-    public void addtoFavorite(int id) {
+    public void addToFavorite(int id) {
+        _log.info("add to Favorite Clicked for id :" + id);
         for (MenuItem mi : menuItems) {
             if (mi.getId() == id) {
                 if (!favoriteItems.contains(mi)) {

@@ -14,30 +14,28 @@
 
     <ui:define name="bodyContent">
         <h:form id="centerForm" prependId="false">
-            <p:panel header="Menu Card" style="width: 99%;">
-                <p:outputPanel id="menuItemContiner">
-                    <p:dataGrid value="#{menuItemController.menuItems}" var="menus" style="border: none;">
-                        <p:panelGrid columns="3">
-                            <h:outputText value="#{menus.id}"/>
-                            <h:outputText value="#{menus.name}"/>
-                            <h:outputText value="#{menus.categoryId}"/>
-                            <p:commandButton value="Favorite"
-                                             actionListener="#{menuItemController.addtoFavorite(menus.id)}"
-                                             update=":leftPanForm:favoriteFormContiner"/>
-                            <p:commandButton value="Add"
-                                             actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"
-                                             update=":rightPanForm:ticketFormContiner"/>
+            <p:panel header="Menu Card" style="width: 99%;" id="menuItemContiner">
+                <p:dataGrid value="#{menuItemController.menuItems}" var="menus" style="border: none;">
+                    <p:panelGrid columns="3">
+                        <h:outputText value="#{menus.id}"/>
+                        <h:outputText value="#{menus.name}"/>
+                        <h:outputText value="#{menus.categoryId}"/>
+                        <p:commandLink value="Favorite"
+                                       actionListener="#{menuItemController.addToFavorite(menus.id)}"
+                                       update=":leftPanForm:accord:favoriteFormContiner"/>
+                        <p:commandLink value="Add"
+                                       actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"
+                                       update=":ticketFormContiner"/>
 
-                            <div style="background-color: #432532;"></div>
-                        </p:panelGrid>
-                    </p:dataGrid>
-                </p:outputPanel>
+                        <div style="background-color: #432532;"></div>
+                    </p:panelGrid>
+                </p:dataGrid>
             </p:panel>
         </h:form>
     </ui:define>
     <ui:define name="rightPan">
-        <p:panelGrid columns="1">
-            <p:outputPanel id="ticketFormContiner">
+        <p:panelGrid columns="1" id="ticketFormContiner">
+            <p:outputPanel>
                 <p:dataGrid value="#{menuItemController.lineItems}" var="cats" style="border: none;">
                     <p:column>
                         <h:outputText value="#{cats.menuItemId}"/><br/>
