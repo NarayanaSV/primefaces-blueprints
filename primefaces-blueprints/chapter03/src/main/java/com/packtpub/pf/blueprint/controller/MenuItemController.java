@@ -1,6 +1,7 @@
 package com.packtpub.pf.blueprint.controller;
 
 import com.packtpub.pf.blueprint.model.Category;
+import com.packtpub.pf.blueprint.model.LineItem;
 import com.packtpub.pf.blueprint.model.MenuItem;
 import org.apache.log4j.Logger;
 
@@ -49,12 +50,36 @@ public class MenuItemController {
     }
 
     public void addLineItem(int id, String displayName, double price) {
-        MenuItem mi = new MenuItem(id, displayName, displayName, price, true, 0);
+        LineItem mi = new LineItem(id, displayName, 1, price);
         if (lineItems.contains(mi)) {
-            return;
+            //already added to ticket updating quantity...
+            for (LineItem li : lineItems) {
+                if (li.getMenuItemId() == id) {
+                    li.setQuantity(li.getQuantity() + 1);
+                    break;
+                }
+            }
+        } else {
+            lineItems.add(mi);
         }
-        lineItems.add(mi);
-        lineTotal += price;
+        updateTotal();
+    }
+
+    private void updateTotal() {
+        for (LineItem li : lineItems) {
+            lineTotal += li.getPrice() * li.getQuantity();
+        }
+    }
+
+    public void addtoFavorite(int id) {
+        for (MenuItem mi : menuItems) {
+            if (mi.getId() == id) {
+                if (!favoriteItems.contains(mi)) {
+                    favoriteItems.add(mi);
+                    break;
+                }
+            }
+        }
     }
 
     private Category category;
@@ -64,7 +89,7 @@ public class MenuItemController {
 
     private List<Category> categories = new ArrayList<Category>();
     private List<MenuItem> menuItems = new ArrayList<MenuItem>();
-    private List<MenuItem> lineItems = new ArrayList<MenuItem>();
+    private List<LineItem> lineItems = new ArrayList<LineItem>();
     private List<MenuItem> favoriteItems = new ArrayList<MenuItem>();
 
     public List<MenuItem> getFavoriteItems() {
@@ -107,11 +132,11 @@ public class MenuItemController {
         this.menuItems = menuItems;
     }
 
-    public List<MenuItem> getLineItems() {
+    public List<LineItem> getLineItems() {
         return lineItems;
     }
 
-    public void setLineItems(List<MenuItem> lineItems) {
+    public void setLineItems(List<LineItem> lineItems) {
         this.lineItems = lineItems;
     }
 

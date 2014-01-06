@@ -13,14 +13,23 @@
     </ui:define>
 
     <ui:define name="bodyContent">
-        <h:form>
+        <h:form id="centerForm" prependId="false">
             <p:panel header="Menu Card" style="width: 99%;">
-                <p:outputPanel id="categoryFormContiner">
-                    <p:dataGrid value="#{menuItemController.categories}" var="menus" style="border: none;">
-                        <p:panel>
-                            <h:outputText value="#{menus.id}"/><br/>
+                <p:outputPanel id="menuItemContiner">
+                    <p:dataGrid value="#{menuItemController.menuItems}" var="menus" style="border: none;">
+                        <p:panelGrid columns="3">
+                            <h:outputText value="#{menus.id}"/>
                             <h:outputText value="#{menus.name}"/>
-                        </p:panel>
+                            <h:outputText value="#{menus.categoryId}"/>
+                            <p:commandButton value="Favorite"
+                                             actionListener="#{menuItemController.addtoFavorite(menus.id)}"
+                                             update=":leftPanForm:favoriteFormContiner"/>
+                            <p:commandButton value="Add"
+                                             actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"
+                                             update=":rightPanForm:ticketFormContiner"/>
+
+                            <div style="background-color: #432532;"></div>
+                        </p:panelGrid>
                     </p:dataGrid>
                 </p:outputPanel>
             </p:panel>
@@ -31,8 +40,16 @@
             <p:outputPanel id="ticketFormContiner">
                 <p:dataGrid value="#{menuItemController.lineItems}" var="cats" style="border: none;">
                     <p:column>
-                        <h:outputText value="#{cats.id}"/><br/>
-                        <h:outputText value="#{cats.name}"/>
+                        <h:outputText value="#{cats.menuItemId}"/><br/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{cats.displayName}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{cats.quantity}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{cats.price}"/>
                     </p:column>
                 </p:dataGrid>
             </p:outputPanel>
@@ -41,7 +58,6 @@
                 <h:outputLabel value="#{menuItemController.lineTotal}"/>
             </p:outputPanel>
         </p:panelGrid>
-
     </ui:define>
 </ui:composition>
 </html>

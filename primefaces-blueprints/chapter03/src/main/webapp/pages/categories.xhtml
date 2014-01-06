@@ -9,10 +9,14 @@
             <p:tab title="Categories">
                 <p:outputPanel id="categoryFormContiner">
                     <p:dataGrid value="#{menuItemController.categories}" var="cats" style="border: none;">
-                        <p:panel>
-                            <h:outputText value="#{cats.id}"/><br/>
-                            <h:outputText value="#{cats.name}"/>
-                        </p:panel>
+                        <p:commandLink style="a:link { text-decoration:none; }"
+                                       update=":centerForm:menuItemContiner"
+                                       actionListener="#{menuItemController.findAllMenuItemsForCategory(cats.id)}">
+                            <p:panel>
+                                <h:outputText value="#{cats.id}"/><br/>
+                                <h:outputText value="#{cats.name}"/>
+                            </p:panel>
+                        </p:commandLink>
                     </p:dataGrid>
                 </p:outputPanel>
             </p:tab>
