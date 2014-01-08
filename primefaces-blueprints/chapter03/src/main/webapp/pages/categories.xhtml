@@ -20,8 +20,8 @@
                     </p:dataGrid>
                 </p:outputPanel>
             </p:tab>
-            <p:tab title="Favorite Items" id="favoriteFormContiner">
-                <p:dataGrid value="#{menuItemController.favoriteItems}" var="mens">
+            <p:tab title="Favorite Items">
+                <p:dataGrid value="#{menuItemController.favoriteItems}" var="mens" id="favoriteFormContiner">
                     <p:panel>
                         <h:outputText value="#{mens.id}"/><br/>
                         <h:outputText value="#{mens.name}"/>

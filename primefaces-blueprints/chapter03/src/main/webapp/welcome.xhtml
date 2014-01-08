@@ -13,7 +13,7 @@
     </ui:define>
 
     <ui:define name="bodyContent">
-        <h:form id="centerForm" prependId="false">
+        <h:form id="centerForm">
             <p:panel header="Menu Card" style="width: 99%;" id="menuItemContiner">
                 <p:dataGrid value="#{menuItemController.menuItems}" var="menus" style="border: none;">
                     <p:panelGrid columns="3">
@@ -25,7 +25,7 @@
                                        update=":leftPanForm:accord:favoriteFormContiner"/>
                         <p:commandLink value="Add"
                                        actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"
-                                       update=":ticketFormContiner"/>
+                                       update=":rightPanForm:ticketFormContiner"/>
 
                         <div style="background-color: #432532;"></div>
                     </p:panelGrid>
@@ -34,28 +34,30 @@
         </h:form>
     </ui:define>
     <ui:define name="rightPan">
-        <p:panelGrid columns="1" id="ticketFormContiner">
-            <p:outputPanel>
-                <p:dataGrid value="#{menuItemController.lineItems}" var="cats" style="border: none;">
-                    <p:column>
-                        <h:outputText value="#{cats.menuItemId}"/><br/>
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{cats.displayName}"/>
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{cats.quantity}"/>
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{cats.price}"/>
-                    </p:column>
-                </p:dataGrid>
-            </p:outputPanel>
-            <p:outputPanel rendered="#{menuItemController.lineTotal != 0}">
-                <h:outputText value="Total : "/>
-                <h:outputLabel value="#{menuItemController.lineTotal}"/>
-            </p:outputPanel>
-        </p:panelGrid>
+        <h:form id="rightPanForm">
+            <p:panelGrid columns="1" id="ticketFormContiner">
+                <p:outputPanel>
+                    <p:dataGrid value="#{menuItemController.lineItems}" var="cats" style="border: none;">
+                        <p:column>
+                            <h:outputText value="#{cats.menuItemId}"/><br/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{cats.displayName}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{cats.quantity}"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{cats.price}"/>
+                        </p:column>
+                    </p:dataGrid>
+                </p:outputPanel>
+                <p:outputPanel rendered="#{menuItemController.lineTotal != 0}">
+                    <h:outputText value="Total : "/>
+                    <h:outputLabel value="#{menuItemController.lineTotal}"/>
+                </p:outputPanel>
+            </p:panelGrid>
+        </h:form>
     </ui:define>
 </ui:composition>
 </html>
