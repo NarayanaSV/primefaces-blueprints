@@ -3,7 +3,7 @@ package com.packtpub.pf.blueprint.controller;
 import org.apache.log4j.Logger;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,7 +13,7 @@ import javax.faces.bean.RequestScoped;
  * To change this template use File | Settings | File Templates.
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class UserController {
     private static final Logger _log = Logger.getLogger(UserController.class);
 
