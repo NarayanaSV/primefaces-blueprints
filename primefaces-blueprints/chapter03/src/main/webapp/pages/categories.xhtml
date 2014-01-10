@@ -20,7 +20,16 @@
                     </p:dataGrid>
                 </p:outputPanel>
             </p:tab>
-            <p:tab title="Favorite Items">
+            <p:tab>
+                <f:facet name="title">
+                    <h:panelGrid columns="2" width="100%">
+                        <h:outputText value="Favorite Items"/>
+                        <p:commandButton icon="ui-icon-extlink" iconPos="center"
+                                         update=":centerForm:menuItemContiner"
+                                         actionListener="#{menuItemController.loadFavorites}"
+                                         style="float: right;"/>
+                    </h:panelGrid>
+                </f:facet>
                 <p:dataGrid value="#{menuItemController.favoriteItems}" var="mens" id="favoriteFormContiner">
                     <p:panel>
                         <h:outputText value="#{mens.id}"/><br/>

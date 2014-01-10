@@ -13,15 +13,35 @@
             <meta http-equiv="expires" content="0"/>
         </f:facet>
         <h:outputStylesheet library="css" name="styles.css"/>
+        <h:outputScript>
+            var hiddenFlag = false;
+            function hideShow() {
+            hiddenFlag = !hiddenFlag;
+            var switherId_2 = $("#switherId_2");
+            if (hiddenFlag) {
+            layoutit.hide('north');
+            layoutit.hide('west');
+            layoutit.hide('east');
+            layoutit.hide('south');
+            switherId_2.attr("title", "Restore Window");
+            } else {
+            layoutit.show('north');
+            layoutit.show('west');
+            layoutit.show('east');
+            layoutit.show('south');
+            switherId_2.attr("title", "Maximize Window");
+            }
+            }
+        </h:outputScript>
         <ui:insert name="head"/>
     </h:head>
     <h:body>
-        <p:layout fullPage="true">
-            <p:ajax event="resize"/>
+        <p:layout fullPage="true" widgetVar="layoutit">
+            <p:ajax event="resize" oncomplete=""/>
             <p:layoutUnit position="north">
                 <div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"
                      style="width: 100%; height: 40px;">
-                    <div style="float: left; margin-left: 3px;  margin-right: 3px;">
+                    <div style="float: left; margin-left: 3px; margin-right: 3px;">
                         <h3>PrimeFaces Menucard</h3>
                     </div>
                     <div style="float: right;">
@@ -29,13 +49,18 @@
                     </div>
                 </div>
             </p:layoutUnit>
-            <p:layoutUnit position="west" collapsible="true" gutter="1">
+            <p:layoutUnit position="west" gutter="1">
                 <ui:insert name="leftPan"/>
             </p:layoutUnit>
             <p:layoutUnit position="center">
+                <div style="position:absolute; top:10px; right:12px;">
+                    <a id="switherId_2" href="javascript:void(0)" onclick="hideShow()" title="Maximize Window">
+                        <span class="ui-icon ui-icon-arrowthick-2-ne-sw"/>
+                    </a>
+                </div>
                 <ui:insert name="bodyContent"/>
             </p:layoutUnit>
-            <p:layoutUnit position="east" collapsible="true" gutter="1">
+            <p:layoutUnit position="east" gutter="1" header="Ticket" resizable="true">
                 <ui:insert name="rightPan"/>
             </p:layoutUnit>
         </p:layout>

@@ -14,18 +14,16 @@
 
     <ui:define name="bodyContent">
         <h:form id="centerForm">
-            <p:panel header="Menu Card" style="width: 99%;" id="menuItemContiner">
+            <p:panel header="Menu Card" style="width: 99%; border: none;" id="menuItemContiner">
                 <p:dataGrid value="#{menuItemController.menuItems}" var="menus" style="border: none;">
                     <p:panelGrid columns="3">
                         <h:outputText value="#{menus.id}"/>
                         <h:outputText value="#{menus.name}"/>
                         <h:outputText value="#{menus.categoryId}"/>
                         <p:commandLink value="Favorite"
-                                       actionListener="#{menuItemController.addToFavorite(menus.id)}"
-                                       update=":leftPanForm:accord:favoriteFormContiner"/>
+                                       actionListener="#{menuItemController.addToFavorite(menus.id)}"/>
                         <p:commandLink value="Add"
-                                       actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"
-                                       update=":rightPanForm:ticketFormContiner"/>
+                                       actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"/>
 
                         <div style="background-color: #432532;"></div>
                     </p:panelGrid>

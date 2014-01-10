@@ -26,7 +26,7 @@ public class MenuItemController {
 
     @PostConstruct
     public void init() {
-        _log.info("Initilized now here : " + System.currentTimeMillis());
+        _log.info("Initializing now here : " + System.currentTimeMillis());
         populateCategory();
     }
 
@@ -66,6 +66,11 @@ public class MenuItemController {
         updateTotal();
     }
 
+    public void loadFavorites() {
+        _log.info("Loading Favorite MenuItems now....");
+        menuItems = favoriteItems;
+    }
+
     private void updateTotal() {
         for (LineItem li : lineItems) {
             lineTotal += li.getPrice() * li.getQuantity();
@@ -89,10 +94,10 @@ public class MenuItemController {
     private double lineTotal = 0;
 
 
-    private List<Category> categories = new ArrayList<Category>();
-    private List<MenuItem> menuItems = new ArrayList<MenuItem>();
-    private List<LineItem> lineItems = new ArrayList<LineItem>();
-    private List<MenuItem> favoriteItems = new ArrayList<MenuItem>();
+    private List<Category> categories = new ArrayList<>();
+    private List<MenuItem> menuItems = new ArrayList<>();
+    private List<LineItem> lineItems = new ArrayList<>();
+    private List<MenuItem> favoriteItems = new ArrayList<>();
 
     public List<MenuItem> getFavoriteItems() {
         return favoriteItems;
