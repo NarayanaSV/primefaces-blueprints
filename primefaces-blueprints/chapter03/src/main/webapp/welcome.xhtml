@@ -20,9 +20,9 @@
                         <h:outputText value="#{menus.id}"/>
                         <h:outputText value="#{menus.name}"/>
                         <h:outputText value="#{menus.categoryId}"/>
-                        <p:commandLink value="Favorite"
+                        <p:commandLink value="Favorite" update=":leftPanForm:accord:favorites"
                                        actionListener="#{menuItemController.addToFavorite(menus.id)}"/>
-                        <p:commandLink value="Add"
+                        <p:commandLink value="Add" update=":rightPanForm"
                                        actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"/>
 
                         <div style="background-color: #432532;"></div>

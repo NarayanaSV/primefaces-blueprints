@@ -30,12 +30,14 @@
                                          style="float: right;"/>
                     </h:panelGrid>
                 </f:facet>
+                <p:outputPanel id="favorites">
                 <p:dataGrid value="#{menuItemController.favoriteItems}" var="mens" id="favoriteFormContiner">
                     <p:panel>
                         <h:outputText value="#{mens.id}"/><br/>
                         <h:outputText value="#{mens.name}"/>
                     </p:panel>
                 </p:dataGrid>
+                </p:outputPanel>
             </p:tab>
         </p:accordionPanel>
     </h:form>
