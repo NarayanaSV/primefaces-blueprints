@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,7 +20,7 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class MenuItemController {
     private static final Logger _log = Logger.getLogger(MenuItemController.class);
 
