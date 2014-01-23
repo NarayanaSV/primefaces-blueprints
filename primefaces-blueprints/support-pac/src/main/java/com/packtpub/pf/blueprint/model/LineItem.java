@@ -8,7 +8,7 @@ package com.packtpub.pf.blueprint.model;
  * To change this template use File | Settings | File Templates.
  */
 public class LineItem {
-    private Integer menuItemId;
+    private int menuItemId;
     private String displayName;
     private int quantity;
     private double price;
@@ -21,11 +21,11 @@ public class LineItem {
         this.price = price;
     }
 
-    public Integer getMenuItemId() {
+    public int getMenuItemId() {
         return menuItemId;
     }
 
-    public void setMenuItemId(Integer menuItemId) {
+    public void setMenuItemId(int menuItemId) {
         this.menuItemId = menuItemId;
     }
 
@@ -59,5 +59,28 @@ public class LineItem {
 
     public void setInstruction(String instruction) {
         this.instruction = instruction;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LineItem)) return false;
+
+        LineItem lineItem = (LineItem) o;
+
+        if (menuItemId != lineItem.menuItemId) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = menuItemId;
+        result = 31 * result + (displayName != null ? displayName.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

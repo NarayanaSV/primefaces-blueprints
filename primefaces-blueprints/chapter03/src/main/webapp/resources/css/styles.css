@@ -18,3 +18,27 @@ body {
     border: 1px solid #CCC;
     margin: 2px auto;
 }
+
+#dtTik td {
+    padding: 0px;
+}
+
+.order-box {
+    height: 10em;
+    width: 15em;
+    margin: auto 0px;
+    border-radius: 16px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    -webkit-box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, .1);
+    box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, .1);
+    display: inline-block;
+
+}
+
+.aligns {
+    margin: auto 0px;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px !important;
+}

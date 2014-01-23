@@ -15,45 +15,52 @@
     <ui:define name="bodyContent">
         <h:form id="centerForm">
             <p:panel header="Menu Card" style="width: 99%; border: none;" id="menuItemContiner">
-                <p:dataGrid value="#{menuItemController.menuItems}" var="menus" style="border: none;">
-                    <p:panelGrid columns="3">
-                        <h:outputText value="#{menus.id}"/>
-                        <h:outputText value="#{menus.name}"/>
-                        <h:outputText value="#{menus.categoryId}"/>
-                        <p:commandLink value="Favorite" update=":leftPanForm:accord:favorites"
-                                       actionListener="#{menuItemController.addToFavorite(menus.id)}"/>
-                        <p:commandLink value="Add" update=":rightPanForm"
-                                       actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"/>
-
-                        <div style="background-color: #432532;"></div>
-                    </p:panelGrid>
+                <p:dataGrid value="#{menuItemController.menuItems}" var="menus" style="border: none;" columns="3">
+                    <p:panel styleClass="order-box">
+                        <p:panelGrid columns="1" columnClasses="aligns">
+                            <p:columnGroup>
+                                <h:outputText value="#{menus.id}"/>
+                                <h:outputText value="#{menus.name}"/>
+                                <h:outputText value="#{menus.categoryId}"/>
+                            </p:columnGroup>
+                            <p:columnGroup>
+                                <p:commandButton value="Favorite" update=":leftPanForm:accord:favorites"
+                                                 actionListener="#{menuItemController.addToFavorite(menus.id)}"/>
+                                <p:commandButton value="Add" update=":rightPanForm"
+                                                 actionListener="#{menuItemController.addLineItem(menus.id, menus.displayName, menus.price)}"/>
+                                <p:spacer/>
+                            </p:columnGroup>
+                        </p:panelGrid>
+                    </p:panel>
                 </p:dataGrid>
             </p:panel>
         </h:form>
     </ui:define>
     <ui:define name="rightPan">
-        <h:form id="rightPanForm">
-            <p:panelGrid columns="1" id="ticketFormContiner">
-                <p:outputPanel>
-                    <p:dataGrid value="#{menuItemController.lineItems}" var="cats" style="border: none;">
-                        <p:column>
-                            <h:outputText value="#{cats.menuItemId}"/><br/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{cats.displayName}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{cats.quantity}"/>
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="#{cats.price}"/>
-                        </p:column>
-                    </p:dataGrid>
-                </p:outputPanel>
-                <p:outputPanel rendered="#{menuItemController.lineTotal != 0}">
-                    <h:outputText value="Total : "/>
-                    <h:outputLabel value="#{menuItemController.lineTotal}"/>
-                </p:outputPanel>
+        <h:form id="rightPanForm" prependId="false">
+            <p:panelGrid columns="1" style="width: 100%;" columnClasses="nobord" id="dtTik">
+                <p:dataTable value="#{menuItemController.lineItems}" var="cats" style="border: none;" rowIndexVar="x">
+                    <p:column>
+                        #{x+1}
+                    </p:column>
+                    <p:column>
+                        #{cats.displayName}
+                    </p:column>
+                    <p:column>
+                        #{cats.quantity}
+                    </p:column>
+                    <p:column>
+                        #{cats.price}
+                    </p:column>
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column colspan="3" footerText="Totals:"
+                                      style="text-align:right"/>
+                            <p:column footerText="#{menuItemController.lineTotal}$"/>
+                        </p:row>
+                    </p:columnGroup>
+                </p:dataTable>
+                <p:commandButton value="Checkout" id="chkBtn"/>
             </p:panelGrid>
         </h:form>
     </ui:define>

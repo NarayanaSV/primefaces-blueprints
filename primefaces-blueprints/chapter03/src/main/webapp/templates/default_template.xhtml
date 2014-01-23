@@ -3,38 +3,42 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <f:view contentType="text/html" locale="en">
-    <h:head title="PrimeFaces">
+    <pe:head title="PrimeFaces">
         <f:facet name="first">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <meta http-equiv="pragma" content="no-cache"/>
             <meta http-equiv="cache-control" content="no-cache"/>
             <meta http-equiv="expires" content="0"/>
         </f:facet>
-        <h:outputStylesheet library="css" name="styles.css"/>
+
         <h:outputScript>
             var hiddenFlag = false;
             function hideShow() {
             hiddenFlag = !hiddenFlag;
-            var switherId_2 = $("#switherId_2");
+            var switherId = $("#switherId");
             if (hiddenFlag) {
             layoutit.hide('north');
             layoutit.hide('west');
             layoutit.hide('east');
             layoutit.hide('south');
-            switherId_2.attr("title", "Restore Window");
+            switherId.attr("title", "Restore Window");
             } else {
             layoutit.show('north');
             layoutit.show('west');
             layoutit.show('east');
             layoutit.show('south');
-            switherId_2.attr("title", "Maximize Window");
+            switherId.attr("title", "Maximize Window");
             }
             }
         </h:outputScript>
         <ui:insert name="head"/>
-    </h:head>
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="styles.css" value="default"/>
+        </f:facet>
+    </pe:head>
+
     <h:body>
         <p:layout fullPage="true" widgetVar="layoutit">
             <p:ajax event="resize" oncomplete=""/>
@@ -45,7 +49,8 @@
                         <h3>PrimeFaces Menucard</h3>
                     </div>
                     <div style="float: right;">
-                        <h3><h:outputText value="#{userController.userName}"/></h3>
+                        <h3><h:outputText value="#{userController.userName}" rendered="#{userController.loggedIn}"/>
+                        </h3>
                     </div>
                 </div>
             </p:layoutUnit>
@@ -54,17 +59,18 @@
             </p:layoutUnit>
             <p:layoutUnit position="center">
                 <div style="position:absolute; top:10px; right:12px;">
-                    <a id="switherId_2" href="javascript:void(0)" onclick="hideShow()" title="Maximize Window">
+                    <p:commandLink id="switherId" action="javascript:void(0)" onclick="hideShow()"
+                                   title="Maximize Window">
                         <span class="ui-icon ui-icon-arrowthick-2-ne-sw"/>
-                    </a>
+                    </p:commandLink>
                 </div>
                 <ui:insert name="bodyContent"/>
             </p:layoutUnit>
-            <p:layoutUnit position="east" gutter="1" header="Ticket" resizable="true">
+            <p:layoutUnit position="east" gutter="1" header="Ticket" size="200">
                 <ui:insert name="rightPan"/>
             </p:layoutUnit>
         </p:layout>
-
     </h:body>
+
 </f:view>
 </html>

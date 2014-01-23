@@ -31,7 +31,7 @@ public class MenuItemController {
     }
 
     private void populateCategory() {
-
+        categories = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             categories.add(new Category(i, "category" + i, 0, true, ""));
         }
@@ -43,24 +43,25 @@ public class MenuItemController {
     public void findAllMenuItemsForCategory(int categoryId) {
         Random rand = new Random(50);
         //instead we can populate from Database.
-
+        menuItems = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            menuItems.add(new MenuItem(i, "Name" + i, "Name" + i, rand.nextDouble(), true, categoryId));
+            menuItems.add(new MenuItem(i, "Name" + i, "Name" + i + "_" + categoryId, rand.nextInt(20), true, categoryId));
         }
     }
 
     public void addLineItem(int id, String displayName, double price) {
         _log.info("Add to LineItem now id: " + id + ", DisplayName: " + displayName + ", Price: " + price);
         LineItem mi = new LineItem(id, displayName, 1, price);
-        if (lineItems.contains(mi)) {
-            //already added to ticket updating quantity...
-            for (LineItem li : lineItems) {
-                if (li.getMenuItemId() == id) {
-                    li.setQuantity(li.getQuantity() + 1);
-                    break;
-                }
+        //already added to ticket updating quantity...
+        boolean isAdded = false;
+        for (LineItem li : lineItems) {
+            if (li.getMenuItemId() == id && li.getDisplayName().equalsIgnoreCase(displayName)) {
+                li.setQuantity(li.getQuantity() + 1);
+                isAdded = true;
+                break;
             }
-        } else {
+        }
+        if (!isAdded) {
             lineItems.add(mi);
         }
         updateTotal();
@@ -72,6 +73,7 @@ public class MenuItemController {
     }
 
     private void updateTotal() {
+        lineTotal = 0;
         for (LineItem li : lineItems) {
             lineTotal += li.getPrice() * li.getQuantity();
         }
