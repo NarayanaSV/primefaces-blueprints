@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterTemplate.xhtml">
+	<ui:define name="content">
+		<h:form id="loginform">
+
+			<p:growl id="growl" sticky="true" showDetail="true" />
+
+			<p:wizard flowListener="#{registrationController.onFlowProcess}">
+
+				<p:tab id="personal" title="Personal">
+
+					<p:panel header="Personal Details">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="2" columnClasses="label, value"
+							styleClass="grid">
+							<h:outputText value="Firstname: *" />
+							<p:inputText required="true" label="Firstname"
+								value="#{registrationController.employee.firstname}" />
+
+							<h:outputText value="Lastname: *" />
+							<p:inputText required="true" label="Lastname"
+								value="#{registrationController.employee.lastname}" />
+
+							<h:outputText value="Date of birth: " />
+							<p:calendar value="#{registrationController.employee.dob}" />
+
+							<h:outputText value="Sex: " />
+							<p:selectOneRadio id="sex"
+								value="#{registrationController.employee.sex}">
+								<f:selectItem itemLabel="Male" itemValue="1" />
+								<f:selectItem itemLabel="Felmale" itemValue="2" />
+							</p:selectOneRadio>
+
+							<h:outputText value="Marital Status: " />
+							<p:selectOneButton
+								value="#{registrationController.employee.maritalStatus}">
+								<f:selectItem itemLabel="Single" itemValue="1" />
+								<f:selectItem itemLabel="Married" itemValue="2" />
+								<f:selectItem itemLabel="Divorsed" itemValue="3" />
+							</p:selectOneButton>
+							<h:outputText value="Skip to last step: " />
+							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="address" title="Address">
+					<p:panel header="Adress Details">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Address: " />
+							<p:inputTextarea rows="6" cols="33" />
+
+							<h:outputText value="Country: " />
+							<p:selectOneMenu
+								value="#{registrationController.employee.country}" effect="fold" var="countryvar"
+								editable="true">
+								<f:selectItem itemLabel="Select One" itemValue="" />
+								<f:selectItems value="#{registrationController.countries}" />
+								<p:ajax update="city" listener="#{registrationController.handleCountryChange(countryvar)}" />
+							</p:selectOneMenu>
+
+							<h:outputText value="City: " />
+							<p:selectOneMenu id="city" value="#{registrationController.employee.city}"
+								effect="fold" editable="true">
+								<f:selectItem itemLabel="Select One" itemValue="" />
+								<f:selectItems value="#{registrationController.cities}" />
+							</p:selectOneMenu>
+
+							<h:outputText value="Phone: " />
+							<p:inputText value="#{registrationController.employee.phone}" />
+
+							<h:outputText value="Postal Code: " />
+							<p:inputText
+								value="#{registrationController.employee.postalCode}" />
+
+							<h:outputText value="Email: " />
+							<p:inputText value="#{registrationController.employee.email}" />
+
+							<h:outputText value="Skip to last step: " />
+							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="education" title="Education">
+					<p:panel header="Education">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="University: *" />
+							<p:inputText required="true" label="Email"
+								value="#{registrationController.employee.university}" />
+
+							<h:outputText value="Qualification: " />
+							<p:selectManyButton
+								value="#{registrationController.employee.qualification}">
+								<f:selectItem itemLabel="BTech" itemValue="1" />
+								<f:selectItem itemLabel="MTech" itemValue="2" />
+								<f:selectItem itemLabel="MS" itemValue="3" />
+							</p:selectManyButton>
+
+							<h:outputText id="output"
+								value="Last degree percentage %#{registrationController.employee.percentage}" />
+							<h:outputText />
+							<h:inputHidden id="txt2"
+								value="#{registrationController.employee.percentage}" />
+							<p:slider for="txt2" display="output" style="width:200px"
+								displayTemplate="Last degree percentage %{value}" />
+
+							<h:outputText value="Skip to last step: " />
+							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="profession" title="Profession">
+					<p:panel header="Profession">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Profession: *" />
+							<p:inputText required="true" label="profession"
+								value="#{registrationController.employee.profession}" />
+
+							<h:outputText value="Experience: *" />
+							<p:spinner id="spinnerStep" required="true" label="experience"
+								value="#{registrationController.employee.experience}" />
+
+							<h:outputText value="Currency: *" />
+							<p:autoComplete id="acMinLength" minQueryLength="3"
+								value="#{registrationController.employee.company}" effect="fade"
+								completeMethod="#{registrationController.complete}" />
+
+							<h:outputText value="Current Package: *" />
+							<p:spinner id="current" required="true" label="current"
+								value="#{registrationController.employee.currentPack}" />
+
+							<h:outputText value="Expected Package: *" />
+							<p:spinner id="expected" required="true" label="expected"
+								value="#{registrationController.employee.expectedPack}" />
+
+							<h:outputText value="Joined Date: " />
+							<p:calendar value="#{registrationController.employee.joinedDate}" />
+
+							<h:outputText value="Skip to last step: " />
+							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+				<p:tab id="skills" title="Skills">
+					<p:panel header="Skills">
+
+						<h:messages errorClass="error" />
+
+						<h:panelGrid columns="2" columnClasses="label, value">
+							<h:outputText value="Frameworks: *" />
+							<p:selectCheckboxMenu
+								value="#{registrationController.employee.selectedFrameworks}"
+								label="Movies" filter="true" filterText="Filter"
+								filterMatchMode="startsWith" panelStyle="width:220px">
+								<f:selectItems value="#{registrationController.allFrameworks}" />
+							</p:selectCheckboxMenu>
+
+							<h:outputText value="Databases: " />
+							<p:selectManyCheckbox id="database"
+								value="#{registrationController.employee.selectedDBs}">
+								<f:selectItems value="#{registrationController.allDBs}" />
+							</p:selectManyCheckbox>
+
+							<h:outputText value="IDE Expertised: " />
+							<p:multiSelectListbox
+								value="#{registrationController.employee.selectedIDEs}"
+								effect="slide">
+								<f:selectItems value="#{registrationController.allIDEs}" />
+							</p:multiSelectListbox>
+
+
+							<h:outputText value="Application Servers" />
+							<p:selectOneListbox id="basic"
+								value="#{registrationController.employee.selectedServers}">
+								<f:selectItems value="#{registrationController.allServers}" />
+							</p:selectOneListbox>
+
+							<h:outputText value="Skip to last step: " />
+							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+
+
+				<p:tab id="confirm" title="Confirmation">
+					<p:panel header="Confirmation">
+
+						<h:panelGrid id="confirmation" columns="6">
+							<h:outputText value="Firstname: " />
+							<p:inplace id="firstnameinplace" editor="true">
+								<p:inputText styleClass="outputLabel"
+									value="#{registrationController.employee.firstname}" />
+							</p:inplace>
+
+							<h:outputText value="Lastname: " />
+							<p:inplace id="lastnameinplace" editor="true">
+								<p:inputText styleClass="outputLabel"
+									value="#{registrationController.employee.lastname}" />
+							</p:inplace>
+
+							<h:outputText value="DOB: " />
+							<p:inplace id="dobinplace" editor="true">
+								<p:inputText styleClass="outputLabel"
+									value="#{registrationController.employee.dob}" />>
+							</p:inplace>
+
+							<h:outputText value="Country: " />
+							<p:inplace id="countryinplace" editor="true">
+								<p:inputText styleClass="outputLabel"
+									value="#{registrationController.employee.country}" />
+							</p:inplace>
+
+							<h:outputText value="City: " />
+							<p:inplace id="cityinplace" editor="true">
+								<p:inputText styleClass="outputLabel"
+									value="#{registrationController.employee.city}" />
+							</p:inplace>
+
+							<h:outputText value="Postal Code: " />
+							<p:inplace id="postalinplace" editor="true">
+								<p:inputText styleClass="outputLabel"
+									value="#{registrationController.employee.postalCode}" />
+							</p:inplace>
+
+							<h:outputText value="Email: " />
+							<p:inplace id="emailinplace" editor="true">
+								<p:inputText styleClass="outputLabel"
+									value="#{registrationController.employee.email}" />
+							</p:inplace>
+
+							<h:outputText value="Phone " />
+							<p:inplace id="phoneinplace" editor="true">
+								<p:inputText styleClass="outputLabel"
+									value="#{registrationController.employee.phone}" />
+							</p:inplace>
+
+						</h:panelGrid>
+
+						<p:commandButton value="Submit" update="growl"
+							actionListener="#{registrationController.save}" />
+					</p:panel>
+				</p:tab>
+
+			</p:wizard>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
