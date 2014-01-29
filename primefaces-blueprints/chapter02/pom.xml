@@ -9,7 +9,7 @@
     <artifactId>chapter02</artifactId>
     <packaging>war</packaging>
     
-     <name>PrimeFaces Blueprint's Guide Chapter 01</name>
+     <name>PrimeFaces Blueprint's Guide Chapter 02</name>
 
 
     <build>
@@ -35,8 +35,7 @@
                 <version>${jetty.version}</version>
                 <configuration>
                     <webAppConfig>
-                        <contextPath>/web</contextPath>
-                        <!--<overrideDescriptor>src/main/webapp/WEB-INF/web-overwrite.xml</overrideDescriptor>-->
+                        <contextPath>/Chapter02</contextPath>
                     </webAppConfig>
                     <webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
@@ -67,6 +66,12 @@
             <artifactId>primefaces</artifactId>
             <version>${primefaces.version}</version>
         </dependency>
+        <!-- All Themes -->
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>${themes.version}</version>
+		</dependency>
 
         <dependency>
             <groupId>log4j</groupId>
