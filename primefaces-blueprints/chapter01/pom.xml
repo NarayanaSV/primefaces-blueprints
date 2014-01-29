@@ -41,8 +41,7 @@
                 <version>${jetty.version}</version>
                 <configuration>
                     <webAppConfig>
-                        <contextPath>/web</contextPath>
-                        <!--<overrideDescriptor>src/main/webapp/WEB-INF/web-overwrite.xml</overrideDescriptor>-->
+                        <contextPath>/Chapter01</contextPath>
                     </webAppConfig>
                     <webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
