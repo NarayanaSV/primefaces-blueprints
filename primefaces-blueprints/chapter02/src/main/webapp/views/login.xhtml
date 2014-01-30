@@ -23,7 +23,7 @@
 					<f:facet name="footer">
 						<h:panelGrid columns="3" style="margin-left:30%">
 							<p:outputPanel id="register">
-								<p:commandLink value="#{msg['login.register']}" ajax="false"
+								<p:commandLink value="#{msg['login.register']}" ajax="false" immediate="true"
 									action="registrationform?faces-redirect=true"></p:commandLink>
 							</p:outputPanel>
 							<p:spacer width="10" />

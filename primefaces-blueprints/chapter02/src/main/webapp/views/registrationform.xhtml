@@ -63,10 +63,10 @@
 							<h:outputText value="Country: " />
 							<p:selectOneMenu
 								value="#{registrationController.employee.country}" effect="fold" var="countryvar"
-								editable="true">
+								editable="true" valueChangeListener="#{registrationController.handleCountryChange}">
 								<f:selectItem itemLabel="Select One" itemValue="" />
 								<f:selectItems value="#{registrationController.countries}" />
-								<p:ajax update="city" listener="#{registrationController.handleCountryChange(countryvar)}" />
+								<p:ajax event="change" update="city" />
 							</p:selectOneMenu>
 
 							<h:outputText value="City: " />
