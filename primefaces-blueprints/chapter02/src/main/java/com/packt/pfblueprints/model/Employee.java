@@ -67,13 +67,9 @@ public class Employee implements Serializable {
 
 	private List<String> allDBs=new ArrayList<String>();
 
-	private List<String> selectedIDEs=new ArrayList<String>();
+	private String selectedIDE=new String();
 
-	private List<String> allIDEs=new ArrayList<String>();
-
-	private List<String> selectedServers=new ArrayList<String>();
-
-	private List<String> allServers=new ArrayList<String>();
+	private String selectedServer=new String();
 
 	private String rating;
 
@@ -275,36 +271,22 @@ public class Employee implements Serializable {
 		this.allDBs = allDBs;
 	}
 
-	public List<String> getSelectedIDEs() {
-		return selectedIDEs;
+	
+
+	public String getSelectedIDE() {
+		return selectedIDE;
 	}
 
-	public void setSelectedIDEs(List<String> selectedIDEs) {
-		this.selectedIDEs = selectedIDEs;
+	public void setSelectedIDE(String selectedIDE) {
+		this.selectedIDE = selectedIDE;
 	}
 
-	public List<String> getAllIDEs() {
-		return allIDEs;
+	public String getSelectedServer() {
+		return selectedServer;
 	}
 
-	public void setAllIDEs(List<String> allIDEs) {
-		this.allIDEs = allIDEs;
-	}
-
-	public List<String> getSelectedServers() {
-		return selectedServers;
-	}
-
-	public void setSelectedServers(List<String> selectedServers) {
-		this.selectedServers = selectedServers;
-	}
-
-	public List<String> getAllServers() {
-		return allServers;
-	}
-
-	public void setAllServers(List<String> allServers) {
-		this.allServers = allServers;
+	public void setSelectedServer(String selectedServer) {
+		this.selectedServer = selectedServer;
 	}
 
 	public String getRating() {

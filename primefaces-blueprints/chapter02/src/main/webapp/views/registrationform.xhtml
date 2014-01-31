@@ -77,11 +77,11 @@
 							</p:selectOneMenu>
 
 							<h:outputText value="Phone: " />
-							<p:inputText value="#{registrationController.employee.phone}" />
+							<p:inputMask value="#{registrationController.employee.phone}" mask="(999) 999-9999? x99999"/>
 
 							<h:outputText value="Postal Code: " />
-							<p:inputText
-								value="#{registrationController.employee.postalCode}" />
+							<p:inputMask
+								value="#{registrationController.employee.postalCode}" mask="999-99-9999"/>
 
 							<h:outputText value="Email: " />
 							<p:inputText value="#{registrationController.employee.email}" />
@@ -99,7 +99,7 @@
 
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="University: *" />
-							<p:inputText required="true" label="Email"
+							<p:inputText required="true" label="University"
 								value="#{registrationController.employee.university}" />
 
 							<h:outputText value="Qualification: " />
@@ -136,24 +136,24 @@
 								value="#{registrationController.employee.profession}" />
 
 							<h:outputText value="Experience: *" />
-							<p:spinner id="spinnerStep" required="true" label="experience"
+							<p:spinner id="spinnerStep" required="true" label="experience" min="2"
 								value="#{registrationController.employee.experience}" />
 
-							<h:outputText value="Currency: *" />
+							<h:outputText value="Company: *" />
 							<p:autoComplete id="acMinLength" minQueryLength="3"
 								value="#{registrationController.employee.company}" effect="fade"
 								completeMethod="#{registrationController.complete}" />
 
 							<h:outputText value="Current Package: *" />
-							<p:spinner id="current" required="true" label="current"
+							<p:spinner id="current" required="true" label="current" min="3"
 								value="#{registrationController.employee.currentPack}" />
 
 							<h:outputText value="Expected Package: *" />
-							<p:spinner id="expected" required="true" label="expected"
+							<p:spinner id="expected" required="true" label="expected" min="3" max="20"
 								value="#{registrationController.employee.expectedPack}" />
 
 							<h:outputText value="Joined Date: " />
-							<p:calendar value="#{registrationController.employee.joinedDate}" />
+							<p:calendar value="#{registrationController.employee.joinedDate}" showOn="button" mode="popup"/>
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
@@ -171,8 +171,8 @@
 							<h:outputText value="Frameworks: *" />
 							<p:selectCheckboxMenu
 								value="#{registrationController.employee.selectedFrameworks}"
-								label="Movies" filter="true" filterText="Filter"
-								filterMatchMode="startsWith" panelStyle="width:220px">
+								label="Movies" filter="true" filterText="Filter" 
+								filterMatchMode="startsWith">
 								<f:selectItems value="#{registrationController.allFrameworks}" />
 							</p:selectCheckboxMenu>
 
@@ -182,19 +182,21 @@
 								<f:selectItems value="#{registrationController.allDBs}" />
 							</p:selectManyCheckbox>
 
+							
+							<h:outputText value="Server Expertised:" />
+							<p:multiSelectListbox id="basic"
+								value="#{registrationController.employee.selectedServer}">
+								<f:selectItems value="#{registrationController.allServers}" />
+							</p:multiSelectListbox>
+							
 							<h:outputText value="IDE Expertised: " />
-							<p:multiSelectListbox
-								value="#{registrationController.employee.selectedIDEs}"
+							<p:selectOneListbox
+								value="#{registrationController.employee.selectedIDE}"
 								effect="slide">
 								<f:selectItems value="#{registrationController.allIDEs}" />
-							</p:multiSelectListbox>
-
-
-							<h:outputText value="Application Servers" />
-							<p:selectOneListbox id="basic"
-								value="#{registrationController.employee.selectedServers}">
-								<f:selectItems value="#{registrationController.allServers}" />
 							</p:selectOneListbox>
+
+							
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />

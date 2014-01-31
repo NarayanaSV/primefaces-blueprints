@@ -12,6 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 import javax.faces.view.ViewScoped;
 import javax.annotation.PostConstruct;
 
@@ -39,7 +41,7 @@ public class RegistrationController implements Serializable {
 
 	private List<String> allIDEs=new ArrayList<String>();
 
-	private List<String> allServers=new ArrayList<String>();
+	private List<SelectItem> allServers;  
 
 	private Boolean skip;
 	
@@ -91,13 +93,35 @@ public class RegistrationController implements Serializable {
 	        allIDEs.add("Intellij");
 	        allIDEs.add("JDeveloper");
 	        
-	        allServers.add("WebSphere");
-	        allServers.add("WebLogic");
-	        allServers.add("Glassfish");
-	        allServers.add("Jboss");
 	        
+	        allServers = new ArrayList<SelectItem>();  
+	        SelectItemGroup group1 = new SelectItemGroup("Application Servers");  
+	        SelectItemGroup group2 = new SelectItemGroup("Web servers");  
+	                  
+	        SelectItemGroup group11 = new SelectItemGroup("Open source");  
+	        SelectItemGroup group12 = new SelectItemGroup("Proprietary");  
+	          
+	        SelectItemGroup group21 = new SelectItemGroup("Open source");  
 	        
+	        SelectItem option111 = new SelectItem("Glassfish");  
+	        SelectItem option112 = new SelectItem("Jboss");
+	        SelectItem option113 = new SelectItem("TomEE");  
+	        group11.setSelectItems(new SelectItem[]{option111, option112,option113});
 	        
+	        SelectItem option121 = new SelectItem("Wellogic");  
+	        SelectItem option122 = new SelectItem("Websphere");  
+	        group12.setSelectItems(new SelectItem[]{option121, option122});
+	        
+	        SelectItem option211 = new SelectItem("Tomcat");  
+	        SelectItem option222 = new SelectItem("Jetty"); 
+	        SelectItem option223 = new SelectItem("Resin");  
+	        group21.setSelectItems(new SelectItem[]{option211, option222,option223});
+	          
+	        group1.setSelectItems(new SelectItem[]{group11, group12});  
+	        group2.setSelectItems(new SelectItem[]{group21});  
+	          
+	        allServers.add(group1);  
+	        allServers.add(group2);  
 	}
 
 	public Employee getEmployee() {
@@ -158,11 +182,14 @@ public class RegistrationController implements Serializable {
 		this.allIDEs = allIDEs;
 	}
 
-	public List<String> getAllServers() {
+	
+
+
+	public List<SelectItem> getAllServers() {
 		return allServers;
 	}
 
-	public void setAllServers(List<String> allServers) {
+	public void setAllServers(List<SelectItem> allServers) {
 		this.allServers = allServers;
 	}
 
@@ -191,5 +218,14 @@ public class RegistrationController implements Serializable {
 		FacesMessage msg = new FacesMessage("Successful", "Welcome to Jobsite");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
+	 public List<String> complete(String query) {  
+	        List<String> results = new ArrayList<String>();  
+	          
+	        for (int i = 0; i < 10; i++) {  
+	            results.add(query + i);  
+	        }  
+	          
+	        return results;  
+	    }  
 
 }
