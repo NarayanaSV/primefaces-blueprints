@@ -22,14 +22,17 @@
 							styleClass="grid">
 							<h:outputText value="Firstname: *" />
 							<p:inputText required="true" label="Firstname"
+								requiredMessage="Firstname shouldn't be empty"
 								value="#{registrationController.employee.firstname}" />
 
 							<h:outputText value="Lastname: *" />
 							<p:inputText required="true" label="Lastname"
+								requiredMessage="Lastname shouldn't be empty"
 								value="#{registrationController.employee.lastname}" />
 
 							<h:outputText value="Date of birth: " />
-							<p:calendar value="#{registrationController.employee.dob}" />
+							<p:calendar value="#{registrationController.employee.dob}"
+								effect="slideDown" navigator="true" showButtonPanel="true" />
 
 							<h:outputText value="Sex: " />
 							<p:selectOneRadio id="sex"
@@ -58,30 +61,38 @@
 
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Address: " />
-							<p:inputTextarea rows="6" cols="33" />
+							<p:inputTextarea rows="5" cols="30" counter="counter"
+								maxlength="10" counterTemplate="{0} more characters remaining." />
+							<h:outputText id="counter" />
+							<h:outputText></h:outputText>
 
 							<h:outputText value="Country: " />
+							
 							<p:selectOneMenu
-								value="#{registrationController.employee.country}" effect="fold" var="countryvar"
-								editable="true" valueChangeListener="#{registrationController.handleCountryChange}">
+								value="#{registrationController.employee.country}" effect="fold"
+								var="countryvar" editable="true"
+								valueChangeListener="#{registrationController.handleCountryChange}">
 								<f:selectItem itemLabel="Select One" itemValue="" />
 								<f:selectItems value="#{registrationController.countries}" />
 								<p:ajax event="change" update="city" />
 							</p:selectOneMenu>
 
 							<h:outputText value="City: " />
-							<p:selectOneMenu id="city" value="#{registrationController.employee.city}"
-								effect="fold" editable="true">
+							<p:selectOneMenu id="city"
+								value="#{registrationController.employee.city}" effect="fold"
+								editable="true">
 								<f:selectItem itemLabel="Select One" itemValue="" />
 								<f:selectItems value="#{registrationController.cities}" />
 							</p:selectOneMenu>
 
 							<h:outputText value="Phone: " />
-							<p:inputMask value="#{registrationController.employee.phone}" mask="(999) 999-9999? x99999"/>
+							<p:inputMask value="#{registrationController.employee.phone}"
+								mask="(999) 999-9999? x99999" />
 
 							<h:outputText value="Postal Code: " />
 							<p:inputMask
-								value="#{registrationController.employee.postalCode}" mask="999-99-9999"/>
+								value="#{registrationController.employee.postalCode}"
+								mask="999-99-9999" />
 
 							<h:outputText value="Email: " />
 							<p:inputText value="#{registrationController.employee.email}" />
@@ -136,8 +147,8 @@
 								value="#{registrationController.employee.profession}" />
 
 							<h:outputText value="Experience: *" />
-							<p:spinner id="spinnerStep" required="true" label="experience" min="2"
-								value="#{registrationController.employee.experience}" />
+							<p:spinner id="spinnerStep" required="true" label="experience"
+								min="2" value="#{registrationController.employee.experience}" />
 
 							<h:outputText value="Company: *" />
 							<p:autoComplete id="acMinLength" minQueryLength="3"
@@ -149,11 +160,12 @@
 								value="#{registrationController.employee.currentPack}" />
 
 							<h:outputText value="Expected Package: *" />
-							<p:spinner id="expected" required="true" label="expected" min="3" max="20"
-								value="#{registrationController.employee.expectedPack}" />
+							<p:spinner id="expected" required="true" label="expected" min="3"
+								max="20" value="#{registrationController.employee.expectedPack}" />
 
 							<h:outputText value="Joined Date: " />
-							<p:calendar value="#{registrationController.employee.joinedDate}" showOn="button" mode="popup"/>
+							<p:calendar value="#{registrationController.employee.joinedDate}"
+								showOn="button" mode="popup" />
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
@@ -171,7 +183,7 @@
 							<h:outputText value="Frameworks: *" />
 							<p:selectCheckboxMenu
 								value="#{registrationController.employee.selectedFrameworks}"
-								label="Movies" filter="true" filterText="Filter" 
+								label="Movies" filter="true" filterText="Filter"
 								filterMatchMode="startsWith">
 								<f:selectItems value="#{registrationController.allFrameworks}" />
 							</p:selectCheckboxMenu>
@@ -182,13 +194,13 @@
 								<f:selectItems value="#{registrationController.allDBs}" />
 							</p:selectManyCheckbox>
 
-							
+
 							<h:outputText value="Server Expertised:" />
-							<p:multiSelectListbox id="basic"
+							<p:multiSelectListbox id="servers"
 								value="#{registrationController.employee.selectedServer}">
 								<f:selectItems value="#{registrationController.allServers}" />
 							</p:multiSelectListbox>
-							
+
 							<h:outputText value="IDE Expertised: " />
 							<p:selectOneListbox
 								value="#{registrationController.employee.selectedIDE}"
@@ -196,7 +208,7 @@
 								<f:selectItems value="#{registrationController.allIDEs}" />
 							</p:selectOneListbox>
 
-							
+
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
