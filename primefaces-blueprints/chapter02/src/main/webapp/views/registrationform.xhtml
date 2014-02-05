@@ -20,19 +20,25 @@
 
 						<h:panelGrid columns="2" columnClasses="label, value"
 							styleClass="grid">
+
+							<h:outputText value="UserID: *" />
+							<p:inputText required="true" label="UserID"
+								requiredMessage="UserID shouldn't be empty"
+								value="#{registrationController.employee.userid}" />
+
 							<h:outputText value="Firstname: *" />
 							<p:inputText required="true" label="Firstname"
 								requiredMessage="Firstname shouldn't be empty"
 								value="#{registrationController.employee.firstname}" />
 
-							<h:outputText value="Lastname: *" />
-							<p:inputText required="true" label="Lastname"
-								requiredMessage="Lastname shouldn't be empty"
+							<h:outputText value="Lastname:" />
+							<p:inputText label="Lastname"
 								value="#{registrationController.employee.lastname}" />
 
-							<h:outputText value="Date of birth: " />
-							<p:calendar value="#{registrationController.employee.dob}"
-								effect="slideDown" navigator="true" showButtonPanel="true" />
+							<h:outputText value="Date of birth: *" />
+							<p:calendar value="#{registrationController.employee.dob}" required="true"
+								pattern="dd/MM/yyyy" effect="slideDown" navigator="true"
+								showButtonPanel="true" />
 
 							<h:outputText value="Sex: " />
 							<p:selectOneRadio id="sex"
@@ -61,13 +67,14 @@
 
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Address: " />
-							<p:inputTextarea rows="5" cols="30" counter="counter"
-								maxlength="10" counterTemplate="{0} more characters remaining." />
-							<h:outputText id="counter" />
+							<p:inputTextarea value="#{registrationController.employee.address}" rows="5" cols="30" counter="counter"
+								maxlength="150" counterTemplate="{0} more characters remaining." />
 							<h:outputText></h:outputText>
+							<h:outputText id="counter" />
+							
 
 							<h:outputText value="Country: " />
-							
+
 							<p:selectOneMenu
 								value="#{registrationController.employee.country}" effect="fold"
 								var="countryvar" editable="true"
@@ -108,7 +115,7 @@
 
 						<h:messages errorClass="error" />
 
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<h:panelGrid columns="2" cellspacing="10" Classes="label, value">
 							<h:outputText value="University: *" />
 							<p:inputText required="true" label="University"
 								value="#{registrationController.employee.university}" />
@@ -122,13 +129,14 @@
 							</p:selectManyButton>
 
 							<h:outputText id="output"
-								value="Last degree percentage %#{registrationController.employee.percentage}" />
-							<h:outputText />
-							<h:inputHidden id="txt2"
-								value="#{registrationController.employee.percentage}" />
+								value="Last degree percentage %#{registrationController.employee.percentage}" >
+							</h:outputText >
+							
 							<p:slider for="txt2" display="output" style="width:200px"
 								displayTemplate="Last degree percentage %{value}" />
-
+							<h:inputHidden id="txt2"
+								value="#{registrationController.employee.percentage}" />
+							<h:outputText></h:outputText>
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
 
@@ -163,9 +171,9 @@
 							<p:spinner id="expected" required="true" label="expected" min="3"
 								max="20" value="#{registrationController.employee.expectedPack}" />
 
-							<h:outputText value="Joined Date: " />
-							<p:calendar value="#{registrationController.employee.joinedDate}"
-								showOn="button" mode="popup" />
+							<h:outputText value="Joined Date: *" />
+							<p:calendar value="#{registrationController.employee.joinedDate}" required="true"
+								showOn="button" mode="popup" pattern="dd/MM/yyyy" />
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
@@ -196,7 +204,7 @@
 
 
 							<h:outputText value="Server Expertised:" />
-							<p:multiSelectListbox id="servers"
+							<p:multiSelectListbox id="servers" 
 								value="#{registrationController.employee.selectedServer}">
 								<f:selectItems value="#{registrationController.allServers}" />
 							</p:multiSelectListbox>
@@ -224,56 +232,51 @@
 						<h:panelGrid id="confirmation" columns="6">
 							<h:outputText value="Firstname: " />
 							<p:inplace id="firstnameinplace" editor="true">
-								<p:inputText styleClass="outputLabel"
+								<p:inputText
 									value="#{registrationController.employee.firstname}" />
 							</p:inplace>
 
 							<h:outputText value="Lastname: " />
 							<p:inplace id="lastnameinplace" editor="true">
-								<p:inputText styleClass="outputLabel"
-									value="#{registrationController.employee.lastname}" />
+								<p:inputText value="#{registrationController.employee.lastname}" />
 							</p:inplace>
 
 							<h:outputText value="DOB: " />
 							<p:inplace id="dobinplace" editor="true">
-								<p:inputText styleClass="outputLabel"
+								<p:calendar pattern="dd/MM/yyyy"
 									value="#{registrationController.employee.dob}" />>
 							</p:inplace>
 
 							<h:outputText value="Country: " />
 							<p:inplace id="countryinplace" editor="true">
-								<p:inputText styleClass="outputLabel"
-									value="#{registrationController.employee.country}" />
+								<p:inputText value="#{registrationController.employee.country}" />
 							</p:inplace>
 
 							<h:outputText value="City: " />
 							<p:inplace id="cityinplace" editor="true">
-								<p:inputText styleClass="outputLabel"
-									value="#{registrationController.employee.city}" />
+								<p:inputText value="#{registrationController.employee.city}" />
 							</p:inplace>
 
 							<h:outputText value="Postal Code: " />
 							<p:inplace id="postalinplace" editor="true">
-								<p:inputText styleClass="outputLabel"
+								<p:inputText
 									value="#{registrationController.employee.postalCode}" />
 							</p:inplace>
 
 							<h:outputText value="Email: " />
 							<p:inplace id="emailinplace" editor="true">
-								<p:inputText styleClass="outputLabel"
-									value="#{registrationController.employee.email}" />
+								<p:inputText value="#{registrationController.employee.email}" />
 							</p:inplace>
 
 							<h:outputText value="Phone " />
 							<p:inplace id="phoneinplace" editor="true">
-								<p:inputText styleClass="outputLabel"
-									value="#{registrationController.employee.phone}" />
+								<p:inputText value="#{registrationController.employee.phone}" />
 							</p:inplace>
 
 						</h:panelGrid>
 
 						<p:commandButton value="Submit" update="growl"
-							actionListener="#{registrationController.save}" />
+							actionListener="#{registrationController.saveEmployee}" />
 					</p:panel>
 				</p:tab>
 

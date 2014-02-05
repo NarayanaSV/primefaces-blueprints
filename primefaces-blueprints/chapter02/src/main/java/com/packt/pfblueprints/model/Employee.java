@@ -12,6 +12,8 @@ public class Employee implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private String userid;
 
 	private String firstname;
 
@@ -19,7 +21,7 @@ public class Employee implements Serializable {
 
 	private Date dob;
 
-	private String sex;
+	private String sex="1";
 
 	private String maritalStatus;
 	
@@ -74,6 +76,16 @@ public class Employee implements Serializable {
 	private String rating;
 
 	private String info;
+	
+	
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
 	public String getFirstname() {
 		return firstname;

@@ -1,6 +1,7 @@
 package com.packt.pfblueprints.controller;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -15,10 +16,12 @@ import javax.faces.view.ViewScoped;
 //import org.primefaces.context.RequestContext;
 import javax.faces.bean.ManagedBean;
 
+import com.packt.pfblueprints.dao.LoginDAO;
+
 
 @ManagedBean
 @ViewScoped
-public class LoginBean implements Serializable{
+public class LoginController implements Serializable{
 
 	/**
 	 * 
@@ -35,20 +38,21 @@ public class LoginBean implements Serializable{
 	
 	@PostConstruct  
 	public void init() { 
-		/*messageBundle = ResourceBundle.getBundle("com.packt.messages",FacesContext.getCurrentInstance().getViewRoot().getLocale());
-		 loginmessage=messageBundle.getString("login.login"); */
+	
 	}
 	
-	public String validateUser() {
+	public String validateUser() throws SQLException {
 		FacesMessage msg = null;
-		
-		if(userrole.equalsIgnoreCase("2") && username != null && username.equals("admin") && password != null && password.equals("admin")) {
-			return "/views/admin?faces-redirect=true";
-		} else if(userrole.equalsIgnoreCase("1") && username != null && username.equals("employer") && password != null && password.equals("employer")) {
-			return "/views/employerslist?faces-redirect=true";
+		boolean isValidUser=false;
+		if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
+			return "/views/admin?faces-redirect=true";	
 		}
-		else if(userrole.equalsIgnoreCase("0") && username != null && username.equals("jobseeker") && password != null && password.equals("jobseeker")){
-			 return "/views/jobsList?faces-redirect=true";
+		
+		LoginDAO dao=new LoginDAO();
+		 isValidUser=dao.validateUser(username, password);
+		
+		if(isValidUser) {
+			return "/views/jobposts?faces-redirect=true";
 		}
 		else {
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Invalid credentials");
@@ -74,7 +78,20 @@ public class LoginBean implements Serializable{
 		}
 		
 	}
-	
+	public void changepassword() throws SQLException{
+		LoginDAO dao=new LoginDAO();
+		boolean confirm=false;
+		confirm=dao.changepassword(username, password, newpassword);
+		
+		if (confirm) {
+			FacesMessage msg = new FacesMessage("change password is successful");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		} else {
+			FacesMessage msg = new FacesMessage("change password is unsuccessful",
+					"Please try with valid data");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
 	
 	public String getUsername() {
 		return username;

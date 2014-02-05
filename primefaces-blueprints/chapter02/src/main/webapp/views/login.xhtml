@@ -9,17 +9,17 @@
 			<p:panel style="width:30%;height:30%;margin-left:35%">
 				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputLabel for="username" value="Username:" />
-					<p:inputText value="#{loginBean.username}" id="username"
+					<p:inputText value="#{loginController.username}" id="username"
 						required="true" label="username" />
 
 					<h:outputLabel for="password" value="Password:" />
-					<p:keyboard value="#{loginBean.password}" id="password"
+					<p:keyboard value="#{loginController.password}" id="password"
 						password="true" />
 
 					<h:outputText></h:outputText>
 					<p:commandButton id="loginButton" value="#{msg['login.login']}"
 						update="growl" style="float:right"
-						action="#{loginBean.validateUser}" ajax="false" />
+						action="#{loginController.validateUser}" ajax="false" />
 					<f:facet name="footer">
 						<h:panelGrid columns="3" style="margin-left:30%">
 							<p:outputPanel id="register">
@@ -34,27 +34,27 @@
 				</h:panelGrid>
 				<p:dialog id="changepwd" header="Change Password" widgetVar="$changepwd" modal="true"
 					resizable="false">
-
+					<p:messages autoUpdate="true"></p:messages>
 					<h:panelGrid columns="2" cellpadding="5">
 						<h:outputLabel for="userid" value="Username:" />
-						<p:inputText value="#{loginBean.username}" id="userid"
+						<p:inputText value="#{loginController.username}" id="userid"
 							 label="username" />
 
 						<h:outputLabel for="oldpassword" value="Old password:" />
-						<p:password value="#{loginBean.password}" id="oldpassword"
+						<p:password value="#{loginController.password}" id="oldpassword"
 							 label="password" />
 							
 						<h:outputLabel for="newpassword" value="New password:" />
-						<p:password value="#{loginBean.newpassword}" id="newpassword"
+						<p:password value="#{loginController.newpassword}" id="newpassword"
 							 label="newpassword" />
 							
 						<h:outputLabel for="confirmpassword" value="Confirm password:" />
-						<p:password value="#{loginBean.newpassword}" id="confirmpassword"
+						<p:password value="#{loginController.newpassword}" id="confirmpassword"
 						     label="confirmpassword" />
 
 						<f:facet name="footer">
 							<p:commandButton id="changepassword" value="Submit" 
-								actionListener="#{loginBean.changepassword}"/>
+								actionListener="#{loginController.changepassword}"/>
 						</f:facet>
 					</h:panelGrid>
 
