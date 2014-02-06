@@ -108,7 +108,7 @@ public class AdminDAO {
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement("update blueprintsdb.adminconfig SET aboutus='"
-					+ aboutus + "' where adminID=admin");
+					+ aboutus + "' where adminID='admin'");
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -121,7 +121,7 @@ public class AdminDAO {
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement("update blueprintsdb.adminconfig SET contactus='"
-					+ contactus + "' where adminID=admin");
+					+ contactus + "' where adminID='admin'");
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -134,7 +134,7 @@ public class AdminDAO {
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement("update blueprintsdb.adminconfig SET disclaimer='"
-					+ disclaimer + "' where adminID=admin");
+					+ disclaimer + "' where adminID='admin'");
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
