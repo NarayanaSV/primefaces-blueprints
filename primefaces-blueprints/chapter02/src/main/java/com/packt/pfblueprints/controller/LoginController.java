@@ -12,7 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 //import org.primefaces.context.RequestContext;
 import javax.faces.bean.ManagedBean;
 
@@ -32,19 +32,21 @@ public class LoginController implements Serializable{
 	private String password;
 	private String newpassword;
 	
-	private String userrole;
-	private String loginmessage;
-	ResourceBundle messageBundle;
 	
-	@PostConstruct  
-	public void init() { 
 	
+	public LoginController() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
+
+
 	public String validateUser() throws SQLException {
 		FacesMessage msg = null;
 		boolean isValidUser=false;
+		System.out.println("username"+username);
+		System.out.println("password"+password);
 		if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
+			System.out.println("admin====");
 			return "/views/admin?faces-redirect=true";	
 		}
 		
@@ -62,22 +64,7 @@ public class LoginController implements Serializable{
 		
 	}
 	
-	public void changeUserRole(){
-		
-		if(userrole.equalsIgnoreCase("1")){
-			loginmessage=messageBundle.getString("login.employerlogin");
-
-		}
-		else if(userrole.equalsIgnoreCase("2")){
-			loginmessage=messageBundle.getString("login.adminlogin");
-
-		}
-		else {
-			loginmessage=messageBundle.getString("login.jobseekerlogin");
-
-		}
-		
-	}
+	
 	public void changepassword() throws SQLException{
 		LoginDAO dao=new LoginDAO();
 		boolean confirm=false;
@@ -119,23 +106,6 @@ public class LoginController implements Serializable{
 		this.newpassword = newpassword;
 	}
 
-	public String getUserrole() {
-		return userrole;
-	}
-
-	public void setUserrole(String userrole) {
-		this.userrole = userrole;
-	}
-	
-	
-
-	public String getLoginmessage() {
-		return loginmessage;
-	}
-
-	public void setLoginmessage(String loginmessage) {
-		this.loginmessage = loginmessage;
-	}
 
 	
 }
