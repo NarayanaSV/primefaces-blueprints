@@ -68,7 +68,7 @@ public class AdminController implements Serializable {
 		}
 	}
 
-	public void discalimerAction() {
+	public void disclaimerAction() {
 		try {
 			dao = new AdminDAO();
 			dao.updateDisclaimer(disclaimer);
