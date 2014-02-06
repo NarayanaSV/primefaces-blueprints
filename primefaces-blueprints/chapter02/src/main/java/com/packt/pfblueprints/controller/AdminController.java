@@ -28,17 +28,18 @@ public class AdminController implements Serializable {
 	private String contactus;
 	private String disclaimer;
 	private List<Employee> employeelist;
+	AdminDAO dao;
 
 	@SuppressWarnings("restriction")
 	@PostConstruct
 	public void init() {
-		AdminDAO dao;
+		
 		try {
 			dao = new AdminDAO();
-			System.out.println("admin controller called");
-			aboutus = "This employee registration application is used to register the new employees to apply the jobs";
-			contactus = "The employee hub site,packt team,UK";
-			disclaimer = "all copy rights reserved for packt publishing";
+			aboutus=dao.getAboutus();
+			contactus=dao.getContactus();
+			disclaimer=dao.getDisclaimer();
+			
 			employeelist = dao.getEmployeeList();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -48,15 +49,33 @@ public class AdminController implements Serializable {
 	}
 
 	public void aboutusAction() {
-
+		try {
+			dao = new AdminDAO();
+			dao.updateAboutus(aboutus);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void contactusAction() {
-
+		try {
+			dao = new AdminDAO();
+			dao.updateContactus(contactus);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void discalimerAction() {
-
+		try {
+			dao = new AdminDAO();
+			dao.updateDisclaimer(disclaimer);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public String getAboutus() {
