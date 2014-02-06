@@ -14,7 +14,7 @@ import com.packt.pfblueprints.dao.JobPostsDAO;
 import com.packt.pfblueprints.model.Employee;
 
 @ManagedBean
-@ApplicationScoped
+@ViewScoped
 public class AdminController implements Serializable {
 
 	/**
