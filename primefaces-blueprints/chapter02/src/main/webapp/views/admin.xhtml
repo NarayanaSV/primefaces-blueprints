@@ -12,15 +12,15 @@
 				<p:tab id="tab1" title="Configurations">
 					<p:accordionPanel>
 						<p:tab title="AboutUS">
-							<h:panelGrid  columns="2" cellpadding="10">
+							<h:panelGrid id="aboutusgrid" columns="2" cellpadding="10">
 								<p:graphicImage value="/resources/images/aboutus.png"
 									width="100" height="100" />
-								<h:outputText id="aboutusgrid" value="#{adminController.aboutus}" />
+								<h:outputText  value="#{adminController.aboutus}" />
 							</h:panelGrid>
 							<p:selectBooleanButton value="#{adminController.aboutusflag}"
 								onLabel="Save" offLabel="Edit" onIcon="ui-icon-check"
 								offIcon="ui-icon-check">
-								<p:ajax update="aboutpanel,aboutusgrid"
+								<p:ajax process="@this,aboutpanel,aboutusgrid" update="aboutpanel,aboutusgrid"
 									actionListener="#{adminController.aboutusAction}" />
 							</p:selectBooleanButton>
 							<p:outputPanel id="aboutpanel">
