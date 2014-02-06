@@ -21,7 +21,7 @@
 								onLabel="Save" offLabel="Edit" onIcon="ui-icon-check"
 								offIcon="ui-icon-check">
 								<p:ajax process="@this,aboutpanel,aboutusgrid" update="aboutpanel,aboutusgrid"
-									actionListener="#{adminController.aboutusAction}" />
+									listener="#{adminController.aboutusAction}" />
 							</p:selectBooleanButton>
 							<p:outputPanel id="aboutpanel">
 								<p:editor id="editor1" value="#{adminController.aboutus}"
@@ -37,8 +37,8 @@
 							<p:selectBooleanButton value="#{adminController.contactusflag}"
 								onLabel="Save" offLabel="Edit" onIcon="ui-icon-check"
 								offIcon="ui-icon-check">
-								<p:ajax update="contactpanel,contactusgrid"
-									actionListener="#{adminController.contactusAction}" />
+								<p:ajax process="@this,contactusgrid,contactpanel" update="contactpanel,contactusgrid"
+									listener="#{adminController.contactusAction}" />
 							</p:selectBooleanButton>
 							<p:outputPanel id="contactpanel">
 								<p:editor id="editor2" value="#{adminController.contactus}"
@@ -54,8 +54,8 @@
 							<p:selectBooleanButton value="#{adminController.disclaimerflag}"
 								onLabel="Save" offLabel="Edit" onIcon="ui-icon-check"
 								offIcon="ui-icon-check">
-								<p:ajax update="disclaimerpanel,disclaimergrid"
-									actionListener="#{adminController.disclaimerAction}" />
+								<p:ajax process="@this,disclaimerpanel,disclaimergrid" update="disclaimerpanel,disclaimergrid" 
+									listener="#{adminController.disclaimerAction}" />
 							</p:selectBooleanButton>
 							<p:outputPanel id="disclaimerpanel">
 								<p:editor id="editor3" value="#{adminController.disclaimer}"
