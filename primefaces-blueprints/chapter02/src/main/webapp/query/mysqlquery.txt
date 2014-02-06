@@ -40,4 +40,10 @@ CREATE TABLE  `blueprintsdb`.`employee` (
   INSERT INTO blueprintsdb.jobposts(company,domain,experience,position,location)VALUES('AsianSoft','java','11','architect','germany');
   INSERT INTO blueprintsdb.jobposts(company,domain,experience,position,location)VALUES('AmericanSoft','java','6','software engineer','uk');
   /////////////////
+  CREATE TABLE  `blueprintsdb`.`adminconfig` (
+  `adminID` VARCHAR(30) NOT NULL,
+  `aboutus` text,
+  `contactus` text,
+  `disclaimer` text)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  ////////////////
 INSERT INTO blueprintsdb.employee(userid,firstname,lastname,dob,sex,maritalstatus,address,country,city,phone,postalcode,email,university,qualification,percentage,profession,experience,company,currentpack,expectedpack,joineddate,frameworks,dbs,servers,ides,password)VALUES('111','john','smith','14/12/1986','m','married','AK apartements','US','NewYork','22335566','1666555','john.smith@gmail.com','Harward','MS','89','Software',8,'Tech Fast',15,20,'06/06/2006','jsf','oracle','websphere','eclipse','');
