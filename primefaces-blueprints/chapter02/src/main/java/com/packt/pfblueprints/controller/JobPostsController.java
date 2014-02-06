@@ -45,5 +45,5 @@ public class JobPostsController implements Serializable{
 		this.jobslist = jobslist;
 	}
 	
-
+	
 }

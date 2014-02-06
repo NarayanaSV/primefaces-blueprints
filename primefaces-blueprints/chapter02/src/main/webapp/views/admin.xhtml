@@ -12,13 +12,55 @@
 				<p:tab id="tab1" title="Configurations">
 					<p:accordionPanel>
 						<p:tab title="AboutUS">
-
+							<h:panelGrid  columns="2" cellpadding="10">
+								<p:graphicImage value="/resources/images/aboutus.png"
+									width="100" height="100" />
+								<h:outputText id="aboutusgrid" value="#{adminController.aboutus}" />
+							</h:panelGrid>
+							<p:selectBooleanButton value="#{adminController.aboutusflag}"
+								onLabel="Save" offLabel="Edit" onIcon="ui-icon-check"
+								offIcon="ui-icon-check">
+								<p:ajax update="aboutpanel,aboutusgrid"
+									actionListener="#{adminController.aboutusAction}" />
+							</p:selectBooleanButton>
+							<p:outputPanel id="aboutpanel">
+								<p:editor id="editor1" value="#{adminController.aboutus}"
+									rendered="#{adminController.aboutusflag}" width="500" />
+							</p:outputPanel>
 						</p:tab>
 						<p:tab title="ContactUS">
-
+							<h:panelGrid id="contactusgrid" columns="2" cellpadding="10">
+								<p:graphicImage value="/resources/images/help.png"
+									width="100" height="100" />
+								<h:outputText value="#{adminController.contactus}" />
+							</h:panelGrid>
+							<p:selectBooleanButton value="#{adminController.contactusflag}"
+								onLabel="Save" offLabel="Edit" onIcon="ui-icon-check"
+								offIcon="ui-icon-check">
+								<p:ajax update="contactpanel,contactusgrid"
+									actionListener="#{adminController.conactusAction}" />
+							</p:selectBooleanButton>
+							<p:outputPanel id="contactpanel">
+								<p:editor id="editor2" value="#{adminController.contactus}"
+									rendered="#{adminController.contactusflag}" width="500" />
+							</p:outputPanel>
 						</p:tab>
 						<p:tab title="Disclaimer">
-
+							<h:panelGrid id="disclaimergrid" columns="2" cellpadding="10">
+								<p:graphicImage value="/resources/images/disclaimer.png"
+									width="100" height="100" />
+								<h:outputText value="#{adminController.disclaimer}" />
+							</h:panelGrid>
+							<p:selectBooleanButton value="#{adminController.disclaimerflag}"
+								onLabel="Save" offLabel="Edit" onIcon="ui-icon-check"
+								offIcon="ui-icon-check">
+								<p:ajax update="disclaimerpanel,disclaimergrid"
+									actionListener="#{adminController.disclaimerAction}" />
+							</p:selectBooleanButton>
+							<p:outputPanel id="disclaimerpanel">
+								<p:editor id="editor3" value="#{adminController.disclaimer}"
+									rendered="#{adminController.disclaimerflag}" width="500" />
+							</p:outputPanel>
 						</p:tab>
 					</p:accordionPanel>
 				</p:tab>
@@ -50,7 +92,7 @@
 						</p:column>
 					</p:dataTable>
 				</p:tab>
-				</p:tabView>
+			</p:tabView>
 		</h:form>
 	</ui:define>
 </ui:composition>
