@@ -104,7 +104,7 @@
 								mask="999-99-9999" />
 
 							<h:outputText value="Email: " />
-							<p:inputText id="email" value="#{registrationController.employee.email}" />
+							<p:inputText id="email" value="#{registrationController.employee.email}" >
 							 <f:validator validatorId="custom.emailValidator" /> 
 							</p:inputText>
 							<p:message for="email1" display="tooltip" /> 
