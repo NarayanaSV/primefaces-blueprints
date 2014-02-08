@@ -53,7 +53,7 @@
 					<h:outputLabel for="userid" value="Username:" />
 					<p:inputText value="#{loginController.username}" id="userid"
 						required="true" requiredMessage="Username cannot be empty"
-						validatorMessage="The length of the username exist between 3 and 8 chapters"
+						validatorMessage="The length of the username should exist between 3 and 8 chapters"
 						label="username">
 						<f:validateLength minimum="3" maximum="8" />
 					</p:inputText>

@@ -87,7 +87,7 @@
 							<h:outputText value="Date of birth: *" />
 							<p:calendar value="#{registrationController.employee.dob}"
 								required="true" pattern="dd/MM/yyyy" effect="slideDown"
-								navigator="true" showButtonPanel="true" />
+								navigator="true" showButtonPanel="true" yearRange="c-50:c+50" />
 
 							<h:outputText value="Sex: " />
 							<p:selectOneRadio id="sex"
@@ -215,12 +215,12 @@
 
 							<h:outputText value="Current Package: *" />
 							<p:spinner id="current" required="true"
-								requiredMessage="Current package can't be empty" label="current"
+								requiredMessage="Current package can't be empty" prefix="$" label="current"
 								min="3" value="#{registrationController.employee.currentPack}" />
 
 							<h:outputText value="Expected Package: *" />
 							<p:spinner id="expected" required="true"
-								requiredMessage="Expected package can't be empty"
+								requiredMessage="Expected package can't be empty" prefix="$"
 								label="expected" min="3" max="20"
 								value="#{registrationController.employee.expectedPack}" />
 
