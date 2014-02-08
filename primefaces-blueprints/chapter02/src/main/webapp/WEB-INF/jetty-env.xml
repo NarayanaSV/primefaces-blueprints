@@ -1,6 +1,5 @@
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">  
 <New id="DSTest" class="org.eclipse.jetty.plus.jndi.Resource">
-     <Arg></Arg>
      <Arg>jdbc/blueprintsdb</Arg>
      <Arg>
         <New class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">

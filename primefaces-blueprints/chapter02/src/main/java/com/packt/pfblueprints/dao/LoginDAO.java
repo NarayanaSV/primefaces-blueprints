@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -20,14 +19,14 @@ public class LoginDAO {
 		try {
 			Context ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/blueprintsdb");
-			if (ds == null)
+			if (ds == null) {
 				throw new SQLException("Can't get data source");
-
+			}
 			// get database connection
 			con = ds.getConnection();
-
-			if (con == null)
+			if (con == null) {
 				throw new SQLException("Can't get database connection");
+			}
 
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -64,7 +63,7 @@ public class LoginDAO {
 
 	public boolean validateUser(String userid, String password) {
 		try {
-			// Persist employee
+			//Check the logged jobseeker is valid or not
 			PreparedStatement ps = con
 					.prepareStatement("select count(*) FROM (select * FROM blueprintsdb.employee) as useralias WHERE userid='"
 							+ userid + "'  and password='" + password + "'");
@@ -86,6 +85,5 @@ public class LoginDAO {
 
 		}
 		return false;
-
 	}
 }

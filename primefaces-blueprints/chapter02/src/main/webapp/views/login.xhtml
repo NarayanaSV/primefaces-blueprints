@@ -49,23 +49,35 @@
 			<h:form id="changepwdform">
 
 				<p:messages id="changepass"></p:messages>
-				<h:panelGrid columns="2" cellpadding="5">
+				<h:panelGrid columns="3" cellpadding="5">
 					<h:outputLabel for="userid" value="Username:" />
 					<p:inputText value="#{loginController.username}" id="userid"
-						label="username" />
+						required="true" requiredMessage="Username cannot be empty"
+						validatorMessage="The length of the username exist between 3 and 8 chapters"
+						label="username">
+						<f:validateLength minimum="3" maximum="8" />
+					</p:inputText>
+					<p:watermark for="userid" value="Enter username" />
 
 					<h:outputLabel for="oldpassword" value="Old password:" />
 					<p:password value="#{loginController.password}" id="oldpassword"
+						required="true" requiredMessage="Password cannot be empty"
 						label="password" />
+					<p:watermark for="oldpassword" value="Enter old password" />
 
 					<h:outputLabel for="newpassword" value="New password:" />
 					<p:password value="#{loginController.newpassword}" id="newpassword"
+						required="true" requiredMessage="New password cannot be empty"
 						label="newpassword" />
-
+					<p:watermark for="newpassword" value="Enter new password" />
+					
 					<h:outputLabel for="confirmpassword" value="Confirm password:" />
 					<p:password value="#{loginController.newpassword}"
-						id="confirmpassword" label="confirmpassword" />
-
+						id="confirmpassword" required="true"
+						requiredMessage="Confirm password cannot be empty"
+						label="confirmpassword" />
+					<p:watermark for="confirmpassword" value="Enter confirm password" />
+					
 					<f:facet name="footer">
 						<p:commandButton id="changepassword" value="Submit"
 							update="changepass"
