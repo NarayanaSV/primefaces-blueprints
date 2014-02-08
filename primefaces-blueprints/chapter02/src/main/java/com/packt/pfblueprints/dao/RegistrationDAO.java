@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.UUID;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -42,9 +41,7 @@ public class RegistrationDAO {
 	   try{
 		   String pattern = "yyyy-MM-dd";
 		   SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-		   
-		   
-	   // Persist employee
+		   // Register employee
 			PreparedStatement ps = con.prepareStatement(
 					   "INSERT INTO blueprintsdb.employee(userid,firstname,lastname,dob,sex,maritalstatus,address,country,city,phone,postalcode,email,university,qualification,percentage,profession,experience,company,currentpack,expectedpack,joineddate,frameworks,dbs,servers,ides,password)VALUES('"+employee.getUserid()+"','"+employee.getFirstname()+"','"+employee.getLastname()+"','"+formatter.format(employee.getDob())+"','"+employee.getSex()+"','"+employee.getMaritalStatus()+"','"+employee.getAddress()+"','"+employee.getCountry()+"','"+employee.getCity()+"','"+employee.getPhone()+"','"+employee.getPostalCode()+"','"+employee.getEmail()+"','"+employee.getUniversity()+"','"+employee.getQualification()+"','"+employee.getPercentage()+"','"+employee.getProfession()+"',"+employee.getExperience()+",'"+employee.getCompany()+"',"+employee.getCurrentPack()+","+employee.getExpectedPack()+",'"+formatter.format(employee.getJoinedDate())+"','"+employee.getSelectedFrameworks()+"','"+employee.getSelectedDBs()+"','"+employee.getSelectedServer()+"','"+employee.getSelectedIDE()+"','"+uniqueID+"')"); 
 			int count=ps.executeUpdate();
@@ -65,6 +62,4 @@ public class RegistrationDAO {
 			
    }
 	
-	
-
 }

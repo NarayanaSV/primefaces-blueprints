@@ -17,7 +17,7 @@ import org.primefaces.validate.bean.ClientConstraint;
 @Documented
 public @interface Email {
     
-    String message() default "{org.primefaces.examples.primefaces}";
+    String message() default "{com.packt.pfblueprints.primefaces}";
     
     Class<?>[] groups() default {};
 

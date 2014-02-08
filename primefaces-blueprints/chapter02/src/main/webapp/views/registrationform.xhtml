@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/masterTemplate.xhtml">
 	<ui:define name="head">
-		
+
 		<script type="text/javascript">
 			//<![CDATA[
 			/**
@@ -153,18 +153,7 @@
 							<h:outputText value="Email: " />
 							<p:inputText id="email"
 								value="#{registrationController.employee.email}">
-								<!-- <f:validator validatorId="custom.emailValidator" /> -->
 							</p:inputText>
-							<!-- <p:message for="email" display="tooltip" />
-							<h:outputText></h:outputText> -->
-
-
-							<!-- <h:outputText value="Another Email: " />
-							<p:inputText id="anotheremail"
-								value="#{registrationController.employee.anotheremail}">
-							</p:inputText>
-							<p:message for="anotheremail" display="tooltip" />
-							<h:outputText></h:outputText> -->
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
@@ -174,12 +163,11 @@
 
 				<p:tab id="education" title="Education">
 					<p:panel header="Education">
-
 						<h:messages errorClass="error" />
-
 						<h:panelGrid columns="2" cellspacing="10" Classes="label, value">
 							<h:outputText value="University: *" />
-							<p:inputText required="true" label="University"
+							<p:inputText required="true"
+								requiredMessage="University cannot be empty" label="University"
 								value="#{registrationController.employee.university}" />
 
 							<h:outputText value="Qualification: " />
@@ -208,35 +196,38 @@
 
 				<p:tab id="profession" title="Profession">
 					<p:panel header="Profession">
-
 						<h:messages errorClass="error" />
-
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Profession: *" />
-							<p:inputText required="true" label="profession"
+							<p:inputText required="true"
+								requiredMessage="Profession can't be empty" label="profession"
 								value="#{registrationController.employee.profession}" />
 
 							<h:outputText value="Experience: *" />
-							<p:spinner id="spinnerStep" required="true" label="experience"
+							<p:spinner id="spinnerStep" required="true"
+								requiredMessage="Experience can't be empty" label="experience"
 								min="2" value="#{registrationController.employee.experience}" />
 
-							<h:outputText value="Company: *" />
+							<h:outputText value="Company: " />
 							<p:autoComplete id="acMinLength" minQueryLength="3"
 								value="#{registrationController.employee.company}" effect="fade"
 								completeMethod="#{registrationController.complete}" />
 
 							<h:outputText value="Current Package: *" />
-							<p:spinner id="current" required="true" label="current" min="3"
-								value="#{registrationController.employee.currentPack}" />
+							<p:spinner id="current" required="true"
+								requiredMessage="Current package can't be empty" label="current"
+								min="3" value="#{registrationController.employee.currentPack}" />
 
 							<h:outputText value="Expected Package: *" />
-							<p:spinner id="expected" required="true" label="expected" min="3"
-								max="20" value="#{registrationController.employee.expectedPack}" />
+							<p:spinner id="expected" required="true"
+								requiredMessage="Expected package can't be empty"
+								label="expected" min="3" max="20"
+								value="#{registrationController.employee.expectedPack}" />
 
 							<h:outputText value="Joined Date: *" />
 							<p:calendar value="#{registrationController.employee.joinedDate}"
-								required="true" showOn="button" mode="popup"
-								pattern="dd/MM/yyyy" />
+								required="true" requiredMessage="Joined date can't be empty"
+								showOn="button" mode="popup" pattern="dd/MM/yyyy" />
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
@@ -247,9 +238,7 @@
 
 				<p:tab id="skills" title="Skills">
 					<p:panel header="Skills">
-
 						<h:messages errorClass="error" />
-
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Frameworks: *" />
 							<p:selectCheckboxMenu
@@ -265,7 +254,6 @@
 								<f:selectItems value="#{registrationController.allDBs}" />
 							</p:selectManyCheckbox>
 
-
 							<h:outputText value="Server Expertised:" />
 							<p:multiSelectListbox id="servers"
 								value="#{registrationController.employee.selectedServer}">
@@ -279,11 +267,8 @@
 								<f:selectItems value="#{registrationController.allIDEs}" />
 							</p:selectOneListbox>
 
-
-
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
-
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -291,7 +276,6 @@
 
 				<p:tab id="confirm" title="Confirmation">
 					<p:panel header="Confirmation">
-
 						<h:panelGrid id="confirmation" columns="6">
 							<h:outputText value="Firstname: " />
 							<p:inplace id="firstnameinplace" editor="true">
@@ -335,9 +319,7 @@
 							<p:inplace id="phoneinplace" editor="true">
 								<p:inputText value="#{registrationController.employee.phone}" />
 							</p:inplace>
-
 						</h:panelGrid>
-
 						<p:commandButton value="Submit" update="growl"
 							actionListener="#{registrationController.saveEmployee}" />
 					</p:panel>
