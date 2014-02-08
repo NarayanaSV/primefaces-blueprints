@@ -7,15 +7,22 @@
 	<ui:define name="content">
 		<h:form id="loginform">
 			<p:panel style="width:30%;height:30%;margin-left:35%">
-			<p:messages id="login"></p:messages>
-				<h:panelGrid columns="2" cellpadding="5">
+				<p:messages id="login"></p:messages>
+				<h:panelGrid columns="3" cellpadding="5">
 					<h:outputLabel for="username" value="Username:" />
 					<p:inputText value="#{loginController.username}" id="username"
-						required="true" label="username" />
+						required="true" requiredMessage="Username cannot be empty"
+						validatorMessage="The length of the username exist between 3 and 8 chapters"
+						label="username">
+						<f:validateLength minimum="3" maximum="8" />
+					</p:inputText>
+					<p:watermark for="username" value="Enter username" />
 
 					<h:outputLabel for="password" value="Password:" />
 					<p:keyboard value="#{loginController.password}" id="password"
+						required="true" requiredMessage="Password cannot be empty"
 						password="true" />
+					<p:watermark for="password" value="Enter password" />
 
 					<h:outputText></h:outputText>
 					<p:commandButton id="loginButton" value="#{msg['login.login']}"
@@ -24,46 +31,48 @@
 					<f:facet name="footer">
 						<h:panelGrid columns="3" style="margin-left:30%">
 							<p:outputPanel id="register">
-								<p:commandLink value="#{msg['login.register']}" ajax="false" immediate="true"
-									action="registrationform?faces-redirect=true"></p:commandLink>
+								<p:commandLink value="#{msg['login.register']}" ajax="false"
+									immediate="true" action="registrationform?faces-redirect=true"></p:commandLink>
 							</p:outputPanel>
 							<p:spacer width="10" />
-							<p:commandLink value="#{msg['login.changpasswd']}" onclick="$changepwd.show();"></p:commandLink>
+							<p:commandLink value="#{msg['login.changpasswd']}"
+								onclick="$changepwd.show();"></p:commandLink>
 						</h:panelGrid>
 					</f:facet>
 
 				</h:panelGrid>
-				 
+
 			</p:panel>
 		</h:form>
-		<p:dialog id="changepwd" header="Change Password" widgetVar="$changepwd" modal="true"
-					resizable="false">
-					<h:form id="changepwdform">
-					
-					<p:messages id="changepass"></p:messages>
-					<h:panelGrid columns="2" cellpadding="5">
-						<h:outputLabel for="userid" value="Username:" />
-						<p:inputText value="#{loginController.username}" id="userid"
-							 label="username" />
+		<p:dialog id="changepwd" header="Change Password"
+			widgetVar="$changepwd" modal="true" resizable="false">
+			<h:form id="changepwdform">
 
-						<h:outputLabel for="oldpassword" value="Old password:" />
-						<p:password value="#{loginController.password}" id="oldpassword"
-							 label="password" />
-							
-						<h:outputLabel for="newpassword" value="New password:" />
-						<p:password value="#{loginController.newpassword}" id="newpassword"
-							 label="newpassword" />
-							
-						<h:outputLabel for="confirmpassword" value="Confirm password:" />
-						<p:password value="#{loginController.newpassword}" id="confirmpassword"
-						     label="confirmpassword" />
+				<p:messages id="changepass"></p:messages>
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel for="userid" value="Username:" />
+					<p:inputText value="#{loginController.username}" id="userid"
+						label="username" />
 
-						<f:facet name="footer">
-							<p:commandButton id="changepassword" value="Submit" update="changepass"
-								actionListener="#{loginController.changepassword}"/>
-						</f:facet>
-					</h:panelGrid>
-					</h:form>
-				</p:dialog>
+					<h:outputLabel for="oldpassword" value="Old password:" />
+					<p:password value="#{loginController.password}" id="oldpassword"
+						label="password" />
+
+					<h:outputLabel for="newpassword" value="New password:" />
+					<p:password value="#{loginController.newpassword}" id="newpassword"
+						label="newpassword" />
+
+					<h:outputLabel for="confirmpassword" value="Confirm password:" />
+					<p:password value="#{loginController.newpassword}"
+						id="confirmpassword" label="confirmpassword" />
+
+					<f:facet name="footer">
+						<p:commandButton id="changepassword" value="Submit"
+							update="changepass"
+							actionListener="#{loginController.changepassword}" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
 	</ui:define>
 </ui:composition>
