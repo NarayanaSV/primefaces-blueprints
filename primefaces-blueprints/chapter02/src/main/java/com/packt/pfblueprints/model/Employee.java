@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.packt.pfblueprints.validators.Email;
+
 public class Employee implements Serializable {
 
 	/**
@@ -39,6 +41,8 @@ public class Employee implements Serializable {
 	private String phone;
 
 	private String email;
+	@Email(message = "must be a valid email") 
+	private String anotheremail; 
 	
 
 	private String university;
@@ -316,5 +320,15 @@ public class Employee implements Serializable {
 	public void setInfo(String info) {
 		this.info = info;
 	}
+
+	public String getAnotheremail() {
+		return anotheremail;
+	}
+
+	public void setAnotheremail(String anotheremail) {
+		this.anotheremail = anotheremail;
+	}
+	
+	
 
 }

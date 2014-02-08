@@ -68,7 +68,9 @@
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputText value="Address: " />
 							<p:inputTextarea value="#{registrationController.employee.address}" rows="5" cols="30" counter="counter"
-								maxlength="150" counterTemplate="{0} more characters remaining." />
+								maxlength="150" counterTemplate="{0} more characters remaining." >
+								<f:validateLength minimum="5"/>
+							</p:inputTextarea>
 							<h:outputText></h:outputText>
 							<h:outputText id="counter" />
 							
@@ -102,7 +104,14 @@
 								mask="999-99-9999" />
 
 							<h:outputText value="Email: " />
-							<p:inputText value="#{registrationController.employee.email}" />
+							<p:inputText id="email" value="#{registrationController.employee.email}" />
+							 <f:validator validatorId="custom.emailValidator" /> 
+							</p:inputText>
+							<p:message for="email1" display="tooltip" /> 
+							
+							<h:outputText value="Email: " />
+							<p:inputText id="anotheremail" value="#{registrationController.employee.anotheremail}" />
+							<p:message for="anotheremail" display="tooltip" />
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
