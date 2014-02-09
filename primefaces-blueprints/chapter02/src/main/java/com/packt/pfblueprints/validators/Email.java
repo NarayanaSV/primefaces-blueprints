@@ -17,7 +17,7 @@ import org.primefaces.validate.bean.ClientConstraint;
 @Documented
 public @interface Email {
     
-    String message() default "{com.packt.pfblueprints.primefaces}";
+    String message() default "{com.packt.pfblueprints.validators.invalid}";
     
     Class<?>[] groups() default {};
 

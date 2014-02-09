@@ -30,11 +30,11 @@
 			/**
 			 * Bean validator for @Email
 			 */
-			PrimeFaces.validator['Email'] = {
+			/* PrimeFaces.validator['Email'] = {
 
 				pattern : /\S+@\S+/,
 
-				MESSAGE_ID : 'com.packt.pfblueprints.validators.message',
+				MESSAGE_ID : 'com.packt.pfblueprints.validators.invalid',
 
 				validate : function(element, value) {
 					var vc = PrimeFaces.util.ValidationContext;
@@ -50,7 +50,7 @@
 					}
 				}
 			};
-			//]]>
+			//]]> */
 		</script>
 	</ui:define>
 
@@ -111,17 +111,23 @@
 
 				<p:tab id="address" title="Address">
 					<p:panel header="Adress Details">
+						<p:growl id="error"  showSummary="true"/>
 
-						<h:panelGrid columns="2" columnClasses="label, value">
+						<h:panelGrid columns="3" columnClasses="label, value,label">
 							<h:outputText value="Address: " />
-							<p:inputTextarea
+							<p:inputTextarea id="textarea"
 								value="#{registrationController.employee.address}" rows="5"
 								cols="30" counter="counter" maxlength="150"
+								validatorMessage="Length should not be less than 5 characters"
 								counterTemplate="{0} more characters remaining.">
 								<f:validateLength minimum="5" />
+								<p:clientValidator />
 							</p:inputTextarea>
+							<p:message for="textarea" />
+
 							<h:outputText></h:outputText>
-							<h:outputText id="counter" />
+							<h:outputText id="counter"></h:outputText>
+							<h:outputText></h:outputText>
 
 							<h:outputText value="Country: " />
 							<p:selectOneMenu
@@ -132,6 +138,7 @@
 								<f:selectItems value="#{registrationController.countries}" />
 								<p:ajax event="change" update="city" />
 							</p:selectOneMenu>
+							<h:outputText></h:outputText>
 
 							<h:outputText value="City: " />
 							<p:selectOneMenu id="city"
@@ -140,23 +147,35 @@
 								<f:selectItem itemLabel="Select One" itemValue="" />
 								<f:selectItems value="#{registrationController.cities}" />
 							</p:selectOneMenu>
+							<h:outputText></h:outputText>
 
 							<h:outputText value="Phone: " />
 							<p:inputMask value="#{registrationController.employee.phone}"
 								mask="(999) 999-9999? x99999" />
+							<h:outputText></h:outputText>
 
 							<h:outputText value="Postal Code: " />
 							<p:inputMask
 								value="#{registrationController.employee.postalCode}"
 								mask="999-99-9999" />
+							<h:outputText></h:outputText>
 
 							<h:outputText value="Email: " />
 							<p:inputText id="email"
 								value="#{registrationController.employee.email}">
+								<f:validator validatorId="custom.emailValidator" />
 							</p:inputText>
+							<h:outputText></h:outputText>
+
+							<!-- <h:outputText value="Another email: " />
+							<p:inputText id="anotheremail"
+								value="#{registrationController.employee.anotheremail}">
+							</p:inputText>
+							<h:outputText></h:outputText> -->
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
+							<h:outputText></h:outputText>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
@@ -215,8 +234,9 @@
 
 							<h:outputText value="Current Package: *" />
 							<p:spinner id="current" required="true"
-								requiredMessage="Current package can't be empty" prefix="$" label="current"
-								min="3" value="#{registrationController.employee.currentPack}" />
+								requiredMessage="Current package can't be empty" prefix="$"
+								label="current" min="3"
+								value="#{registrationController.employee.currentPack}" />
 
 							<h:outputText value="Expected Package: *" />
 							<p:spinner id="expected" required="true"
