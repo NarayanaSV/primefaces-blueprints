@@ -111,7 +111,7 @@
 
 				<p:tab id="address" title="Address">
 					<p:panel header="Adress Details">
-						<p:growl id="error"  showSummary="true"/>
+						<p:growl id="error"  showDetail="true"/>
 
 						<h:panelGrid columns="3" columnClasses="label, value,label">
 							<h:outputText value="Address: " />
@@ -167,11 +167,6 @@
 							</p:inputText>
 							<h:outputText></h:outputText>
 
-							<!-- <h:outputText value="Another email: " />
-							<p:inputText id="anotheremail"
-								value="#{registrationController.employee.anotheremail}">
-							</p:inputText>
-							<h:outputText></h:outputText> -->
 
 							<h:outputText value="Skip to last step: " />
 							<p:selectBooleanCheckbox value="#{registrationController.skip}" />
