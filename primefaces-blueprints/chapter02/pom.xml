@@ -9,7 +9,7 @@
 	<artifactId>chapter02</artifactId>
 	<packaging>war</packaging>
 
-	<name>PrimeFaces Blueprint's Guide Chapter 02</name>
+	<name>PrimeFaces Blueprint's  Chapter 02</name>
 
 
 	<build>
