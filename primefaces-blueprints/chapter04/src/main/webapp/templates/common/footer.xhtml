@@ -9,19 +9,19 @@
 	<div style="height: 100px">
 		<h:form id="footerForm">
 <div style="margin-left: 40%;">
-			<p:commandLink value="#{msg['footer.aboutus']}"
+			<p:commandLink value="About Us"
 				onclick="PF('$aboutusDialog').show()" styleClass="links"></p:commandLink>
 			<p:spacer width="20" />
-			<p:commandLink value="#{msg['footer.contactus']}"
+			<p:commandLink value="Contact Us"
 				oncomplete="$helpDialog.show()" styleClass="links"></p:commandLink>
 			<p:spacer height="40" />
-			<p:commandLink value="#{msg['footer.disclaimer']}"
+			<p:commandLink value="Disclaimer"
 				oncomplete="$disclaimerDialog.show()" styleClass="links"></p:commandLink>
 			<p:spacer width="20" />
 			
 		</div>
 		<p:separator style="margin-left:30%;margin-right:30%"></p:separator>
-		<div style="margin-left: 36%">@CopyRight 2013 All rights
+		<div style="margin-left: 40%">@CopyRight 2013 All rights
 			reserved.</div>
 
 		<p:dialog id="aboutusDialog" header="About us"

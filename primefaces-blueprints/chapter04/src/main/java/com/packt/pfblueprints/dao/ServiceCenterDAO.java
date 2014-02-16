@@ -44,7 +44,7 @@ public class ServiceCenterDAO {
 	public List<ServiceCenter> getAllDealers() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Query queryResult = session.createQuery("from User");
+		Query queryResult = session.createQuery("from servicecenter");
 		java.util.List allDealers;
 		allDealers = queryResult.list();
 		session.getTransaction().commit();

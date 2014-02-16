@@ -7,16 +7,16 @@
 	<ui:define name="content">
 		<h:form id="servicecenterform">
 
-			<p:contextMenu for="cars">
-				<p:menuitem value="View Advisor List" update="display"
-					icon="ui-icon-search" oncomplete="PF('$dealerprofile').show()" />
-				<p:menuitem value="Dealer Profile" update="cars"
-					icon="ui-icon-close" actionListener="#{servicecenterController.deleteCar}" />
-				<p:menuitem value="Delete Dealer" update="cars" icon="ui-icon-close"
-					actionListener="#{servicecenterController.deleteCar}" />
+			<p:contextMenu for="servicecenterinfo">
+				<p:menuitem value="View Advisor List"
+					action="dealerinfo.xhtml?faces-redirect=true" icon="ui-icon-search" />
+				<p:menuitem value="Dealer Profile"
+					oncomplete="PF('$dealerprofile').show()" icon="ui-icon-close" />
+				<p:menuitem value="Delete Dealer" icon="ui-icon-close"
+					actionListener="#{servicecenterController.deleteDealer}" />
 			</p:contextMenu>
 
-			<p:dataTable id="dataTable" var="servicecenter"
+			<p:dataTable id="servicecenterinfo" var="servicecenter"
 				value="#{servicecenterController.servicecenterInfo}"
 				paginator="true" rows="10"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -25,19 +25,21 @@
             Service Center Information
         </f:facet>
 
-				<p:column sortBy="dealername" filterBy="dealername" id="dealername">
-					<f:facet name="header">
-						<h:outputText value="Dealer Name" />
-					</f:facet>
-					<h:outputText value="#{servicecenter.dealername}" />
-				</p:column>
-
-				<p:column sortBy="dealertinnumber" filterBy="dealertinnumber" id="dealertinnumber">
+				<p:column sortBy="dealertinnumber" filterBy="dealertinnumber"
+					id="dealertinnumber">
 					<f:facet name="header">
 						<h:outputText value="Dealer TIN/CST Number" />
 					</f:facet>
 					<h:outputText value="#{servicecenter.dealertinnumber}" />
 				</p:column>
+
+				<p:column sortBy="dealername" filterBy="dealername" id="dealername">
+					<f:facet name="header">
+						<h:outputText value="Dealer Name" />
+					</f:facet>
+					<h:outputText value="#{servicecenter.dealerfirstname} #{servicecenter.dealerlastname}" />
+				</p:column>
+
 
 				<p:column sortBy="branchname" filterBy="branchname" id="branchname">
 					<f:facet name="header">
@@ -53,13 +55,7 @@
 					<h:outputText value="#{servicecenter.dor}" />
 				</p:column>
 
-				<p:column sortBy="noofadvisors" filterBy="noofadvisors" id="noofadvisors">
-					<f:facet name="header">
-						<h:outputText value="Number of Advisors" />
-					</f:facet>
-					<h:outputText value="#{servicecenter.noofadvisors}" />
-				</p:column>
-
+				
 				<p:column sortBy="pan" filterBy="pan" id="pan">
 					<f:facet name="header">
 						<h:outputText value="PAN Number" />
@@ -73,6 +69,15 @@
 					</f:facet>
 					<h:outputText value="#{servicecenter.status}" />
 				</p:column>
+				
+				<p:column sortBy="noofadvisors" filterBy="noofadvisors"
+					id="noofadvisors">
+					<f:facet name="header">
+						<h:outputText value="Number of Advisors" />
+					</f:facet>
+					<h:outputText value="#{servicecenter.noofadvisors}" />
+				</p:column>
+				
 
 			</p:dataTable>
 
@@ -85,52 +90,58 @@
 				<p:messages id="messages"></p:messages>
 				<h:panelGrid columns="4" cellpadding="5">
 					<h:outputLabel for="firstname" value="Firstname:" />
-					<p:inputText value="#{servicecenterController.servicecenterobj.firstname}" id="firstname"
-						required="true" requiredMessage="Firstname cannot be empty"
-						label="username">
+					<p:inputText
+						value="#{servicecenterController.servicecenterobj.firstname}"
+						id="firstname" required="true"
+						requiredMessage="Firstname cannot be empty" label="username">
 					</p:inputText>
 					<p:watermark for="firstname" value="Enter firstname" />
-					
+
 					<h:outputLabel for="lastname" value="Lastname:" />
-					<p:inputText value="#{servicecenterController.servicecenterobj.lastname}" id="lastname"
-						required="true" requiredMessage="Firstname cannot be empty"
-						label="username">
+					<p:inputText
+						value="#{servicecenterController.servicecenterobj.lastname}"
+						id="lastname" required="true"
+						requiredMessage="Firstname cannot be empty" label="username">
 					</p:inputText>
 					<p:watermark for="lastname" value="Enter lastname" />
-					
+
 					<h:outputLabel for="address1" value="Address1:" />
-					<p:inputText value="#{servicecenterController.servicecenterobj.address1}" id="address1"
-						required="true" requiredMessage="Address cannot be empty"
-						label="Address">
+					<p:inputText
+						value="#{servicecenterController.servicecenterobj.address1}"
+						id="address1" required="true"
+						requiredMessage="Address cannot be empty" label="Address">
 					</p:inputText>
 					<p:watermark for="address1" value="Enter address" />
-					
+
 					<h:outputLabel for="address2" value="Address2:" />
-					<p:inputText value="#{servicecenterController.servicecenterobj.address2}" id="address2"
-						label="Address">
+					<p:inputText
+						value="#{servicecenterController.servicecenterobj.address2}"
+						id="address2" label="Address">
 					</p:inputText>
 					<p:watermark for="address2" value="Enter address" />
 
 					<h:outputLabel for="country" value="Country:" />
-					<p:password value="#{servicecenterController.servicecenterobj.country}" id="country"
-						label="country" />
+					<p:password
+						value="#{servicecenterController.servicecenterobj.country}"
+						id="country" label="country" />
 					<p:watermark for="country" value="Enter Country" />
 
 					<h:outputLabel for="city" value="City:" />
-					<p:password value="#{servicecenterController.servicecenterobj.city}" id="city"
+					<p:password
+						value="#{servicecenterController.servicecenterobj.city}" id="city"
 						label="City" />
 					<p:watermark for="city" value="Enter City" />
 
 					<h:outputLabel for="contactnumber" value="Contact Number:" />
-					<p:password value="#{servicecenterController.servicecenterobj.contactnumber}"
-						id="contactnumber" 
-						label="Contact Number" />
+					<p:password
+						value="#{servicecenterController.servicecenterobj.contactnumber}"
+						id="contactnumber" label="Contact Number" />
 					<p:watermark for="contactnumber" value="Enter Contact number" />
-					
+
 					<h:outputLabel for="postalcode" value="Postal Code:" />
-					<p:password value="#{servicecenterController.servicecenterobj.postalcode}"
-						id="postalcode" 
-						label="Postal Code" />
+					<p:password
+						value="#{servicecenterController.servicecenterobj.postalcode}"
+						id="postalcode" label="Postal Code" />
 					<p:watermark for="postalcode" value="Enter Postal Code" />
 
 					<f:facet name="footer">

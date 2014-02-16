@@ -34,6 +34,10 @@ public class ServiceCenterConroller implements Serializable{
 		
 		
 	}
+	
+	public void deleteDealer(){
+		
+	}
 
 	public ServiceCenter getServicecenterobj() {
 		return servicecenterobj;
