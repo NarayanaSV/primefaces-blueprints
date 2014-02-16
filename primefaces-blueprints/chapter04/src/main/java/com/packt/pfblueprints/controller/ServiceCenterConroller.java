@@ -6,10 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.view.ViewScoped;
 
 import com.packt.pfblueprints.dao.ServiceCenterDAO;
 import com.packt.pfblueprints.model.ServiceCenter;
 
+@ManagedBean
+@ViewScoped
 public class ServiceCenterConroller implements Serializable{
 
 	/**
@@ -23,6 +27,7 @@ public class ServiceCenterConroller implements Serializable{
 	@SuppressWarnings("restriction")
 	@PostConstruct  
 	public void init() { 
+		System.out.println("bean initialized");
 		ServiceCenterDAO dao;
 		try {
 			dao = new ServiceCenterDAO();
