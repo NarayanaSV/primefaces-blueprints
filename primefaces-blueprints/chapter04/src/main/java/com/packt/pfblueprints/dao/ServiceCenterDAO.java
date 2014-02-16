@@ -9,15 +9,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 import com.packt.pfblueprints.model.ServiceCenter;
 
 public class ServiceCenterDAO {
 
-	private static SessionFactory sessionFactory;
+	private  SessionFactory sessionFactory;
 
-	private static SessionFactory configureSessionFactory()
+	private  SessionFactory configureSessionFactory()
 			throws HibernateException {
 		Configuration configuration = new Configuration();
 		configuration.configure();
@@ -28,23 +27,18 @@ public class ServiceCenterDAO {
 		return sessionfactory;
 	}
 
-	public ServiceCenterDAO() throws SQLException {
-		try {
-			sessionFactory = configureSessionFactory();
-		} catch (HibernateException ex) {
-
-		} catch (Throwable ex) {
-			// Make sure you log the exception, as it might be swallowed
-			System.err.println("Initial SessionFactory creation failed." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
-
+    
+	public ServiceCenterDAO() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
+
 	public List<ServiceCenter> getAllDealers() {
+		sessionFactory = configureSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Query queryResult = session.createQuery("from servicecenter");
+		Query queryResult = session.createQuery("from ServiceCenter");
 		List<ServiceCenter> allDealers = queryResult.list();
 		session.getTransaction().commit();
 		return allDealers;

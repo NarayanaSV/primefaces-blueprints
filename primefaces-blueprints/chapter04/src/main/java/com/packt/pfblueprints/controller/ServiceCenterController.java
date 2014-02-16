@@ -14,7 +14,7 @@ import com.packt.pfblueprints.model.ServiceCenter;
 
 @ManagedBean
 @ViewScoped
-public class ServiceCenterConroller implements Serializable{
+public class ServiceCenterController implements Serializable{
 
 	/**
 	 * 
@@ -28,14 +28,8 @@ public class ServiceCenterConroller implements Serializable{
 	public void init() { 
 		System.out.println("bean initialized");
 		ServiceCenterDAO dao;
-		try {
-			dao = new ServiceCenterDAO();
-			servicecenterInfo=dao.getAllDealers();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		dao = new ServiceCenterDAO();
+		servicecenterInfo=dao.getAllDealers();
 		
 	}
 	

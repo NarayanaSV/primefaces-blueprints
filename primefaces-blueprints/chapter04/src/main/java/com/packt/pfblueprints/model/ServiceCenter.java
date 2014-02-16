@@ -8,7 +8,7 @@ public class ServiceCenter implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private int id;
 	private String dealerfirstname;
 	private String dealerlastname;
 	private String dealertinnumber;
@@ -25,6 +25,12 @@ public class ServiceCenter implements Serializable{
 	private String postalcode;
 	
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getDealerfirstname() {
 		return dealerfirstname;
 	}

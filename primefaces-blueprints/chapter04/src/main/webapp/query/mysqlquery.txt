@@ -1,6 +1,7 @@
 ///Service center table
 DROP TABLE IF EXISTS `blueprintsdb`.`servicecenter`;
 CREATE TABLE  `blueprintsdb`.`servicecenter` (
+   id INT NOT NULL auto_increment,
   `dealertinnumber` VARCHAR(20) NOT NULL UNIQUE,
   `dealerfirstname` VARCHAR(30),
   `dealerlastname` VARCHAR(30),
@@ -15,7 +16,7 @@ CREATE TABLE  `blueprintsdb`.`servicecenter` (
   `city` VARCHAR(20),
   `contactnumber` VARCHAR(30) NOT NULL,
   `postalcode` VARCHAR(10),
-  PRIMARY KEY (`dealertinnumber`))ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`))ENGINE=InnoDB DEFAULT CHARSET=utf8;
   INSERT INTO blueprintsdb.servicecenter(dealertinnumber,dealerfirstname,dealerlastname,branchname,dor,pan,status,noofadvisors,address1,address2,country,city,contactnumber,postalcode)VALUES('111','John','smith','california','02/02/2002','AFME009','ACTIVE','30','Jackson road','Near Techno Towers','US','California','222 333 999','3333-33-99');
   INSERT INTO blueprintsdb.servicecenter(dealertinnumber,dealerfirstname,dealerlastname,branchname,dor,pan,status,noofadvisors,address1,address2,country,city,contactnumber,postalcode)VALUES('222','John','smith','california','02/02/2002','AFME009','ACTIVE','30','Jackson road','Near Techno Towers','US','California','222 333 999','3333-33-99');
   INSERT INTO blueprintsdb.servicecenter(dealertinnumber,dealerfirstname,dealerlastname,branchname,dor,pan,status,noofadvisors,address1,address2,country,city,contactnumber,postalcode)VALUES('333','John','smith','california','02/02/2002','AFME009','ACTIVE','30','Jackson road','Near Techno Towers','US','California','222 333 999','3333-33-99');
