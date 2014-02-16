@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.packt.pfblueprints.dao.ServiceCenterDAO;
 import com.packt.pfblueprints.model.ServiceCenter;
@@ -20,12 +20,11 @@ public class ServiceCenterConroller implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	List<ServiceCenter> servicecenterInfo=new ArrayList<ServiceCenter>();
+	private List<ServiceCenter> servicecenterInfo=new ArrayList<ServiceCenter>();
 	
-	ServiceCenter servicecenterobj=new ServiceCenter();
+	private ServiceCenter servicecenterobj=new ServiceCenter();
 	
-	@SuppressWarnings("restriction")
-	@PostConstruct  
+	@PostConstruct
 	public void init() { 
 		System.out.println("bean initialized");
 		ServiceCenterDAO dao;
@@ -50,6 +49,14 @@ public class ServiceCenterConroller implements Serializable{
 
 	public void setServicecenterobj(ServiceCenter servicecenterobj) {
 		this.servicecenterobj = servicecenterobj;
+	}
+
+	public List<ServiceCenter> getServicecenterInfo() {
+		return servicecenterInfo;
+	}
+
+	public void setServicecenterInfo(List<ServiceCenter> servicecenterInfo) {
+		this.servicecenterInfo = servicecenterInfo;
 	}
 	
 
