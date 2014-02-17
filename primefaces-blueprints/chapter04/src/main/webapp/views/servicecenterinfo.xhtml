@@ -10,9 +10,9 @@
 			<p:contextMenu for="servicecenterinfo">
 				<p:menuitem value="View Advisor List"
 					action="dealerinfo.xhtml?faces-redirect=true" icon="ui-icon-search" />
-				<p:menuitem value="Dealer Profile"
+				<p:menuitem value="Dealer Profile" update=":dealerprofileform"
 					oncomplete="PF('$dealerprofile').show()" icon="ui-icon-close" />
-				<p:menuitem value="Delete Dealer" icon="ui-icon-close"
+				<p:menuitem value="Delete Dealer" icon="ui-icon-close" update="servicecenterinfo"
 					actionListener="#{serviceCenterController.deleteDealer}" />
 			</p:contextMenu>
 
@@ -50,7 +50,7 @@
 					<h:outputText value="#{servicecenter.branchname}" />
 				</p:column>
 
-				<p:column sortBy="dor" filterBy="dor" id="dor">
+				<p:column sortBy="dor" >
 					<f:facet name="header">
 						<h:outputText value="Date of registration" />
 					</f:facet>
@@ -58,22 +58,21 @@
 				</p:column>
 
 
-				<p:column sortBy="pan" filterBy="pan" id="pan">
+				<p:column sortBy="pan" >
 					<f:facet name="header">
 						<h:outputText value="PAN Number" />
 					</f:facet>
 					<h:outputText value="#{servicecenter.pan}" />
 				</p:column>
 
-				<p:column sortBy="status" filterBy="status" id="status">
+				<p:column sortBy="status">
 					<f:facet name="header">
 						<h:outputText value="Status" />
 					</f:facet>
 					<h:outputText value="#{servicecenter.status}" />
 				</p:column>
 
-				<p:column sortBy="noofadvisors" filterBy="noofadvisors"
-					id="noofadvisors">
+				<p:column sortBy="noofadvisors" >
 					<f:facet name="header">
 						<h:outputText value="Number of Advisors" />
 					</f:facet>
@@ -90,7 +89,7 @@
 			<h:form id="dealerprofileform">
 
 				<p:messages id="messages"></p:messages>
-				<h:panelGrid columns="4" cellpadding="5">
+				<h:panelGrid columns="3" cellpadding="5">
 					<h:outputLabel for="firstname" value="Firstname:" />
 					<p:inputText
 						value="#{serviceCenterController.servicecenterobj.dealerfirstname}"

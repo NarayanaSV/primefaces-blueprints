@@ -23,18 +23,17 @@ public class ServiceCenterController implements Serializable{
 	private List<ServiceCenter> servicecenterInfo=new ArrayList<ServiceCenter>();
 	
 	private ServiceCenter servicecenterobj=new ServiceCenter();
+	ServiceCenterDAO dao = new ServiceCenterDAO();
 	
 	@PostConstruct
 	public void init() { 
-		System.out.println("bean initialized");
-		ServiceCenterDAO dao;
-		dao = new ServiceCenterDAO();
+		
 		servicecenterInfo=dao.getAllDealers();
 		
 	}
 	
 	public void deleteDealer(){
-		
+		servicecenterInfo=dao.deleteDealer(servicecenterobj);
 	}
 
 	public ServiceCenter getServicecenterobj() {

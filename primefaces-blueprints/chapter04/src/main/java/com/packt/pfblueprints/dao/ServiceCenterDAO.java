@@ -44,5 +44,16 @@ public class ServiceCenterDAO {
 		return allDealers;
 
 	}
+	public List<ServiceCenter> deleteDealer(ServiceCenter object) {
+		sessionFactory = configureSessionFactory();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.delete(object);
+		Query queryResult = session.createQuery("from ServiceCenter");
+		List<ServiceCenter> allDealers = queryResult.list();
+		session.getTransaction().commit();
+		return allDealers;
+
+	}
 
 }
