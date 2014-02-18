@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.packt.pfblueprints.dao.ServiceCenterDAO;
 import com.packt.pfblueprints.model.ServiceCenter;
@@ -29,6 +30,7 @@ public class ServiceCenterController implements Serializable{
 	public void init() { 
 		
 		servicecenterInfo=dao.getAllDealers();
+		FacesContext.getCurrentInstance().renderResponse();
 		
 	}
 	

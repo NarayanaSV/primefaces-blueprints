@@ -15,7 +15,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>PrimeFaces Blueprint's Guide Chapter 04</name>
+	<name>PrimeFaces Blueprint's Chapter 04</name>
 
 
 	<build>
@@ -42,7 +42,7 @@
 				<version>${jetty.version}</version>
 				<configuration>
 					<webAppConfig>
-						<contextPath>/web</contextPath>
+						<contextPath>/Chapter04</contextPath>
 						<!--<overrideDescriptor>src/main/webapp/WEB-INF/web-overwrite.xml</overrideDescriptor> -->
 					</webAppConfig>
 					<webAppSourceDirectory>${basedir}/src/main/webapp</webAppSourceDirectory>
