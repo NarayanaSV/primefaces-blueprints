@@ -15,6 +15,10 @@
         <jsf.version>2.2.4</jsf.version>
         <log4j.version>1.2.17</log4j.version>
         <jetty.version>8.1.3.v20120416</jetty.version>
+        <themes.version>1.0.10</themes.version>
+        <junit.version>4.11</junit.version>
+        <mysql.version>5.1.26</mysql.version>
+        <slf4j.version>1.7.5</slf4j.version>
     </properties>
 
     <modules>
@@ -24,6 +28,12 @@
         <module>chapter03</module>
         <module>chapter04</module>
         <module>chapter05</module>
+        <module>chapter06</module>
     </modules>
-
+    <repositories>
+        <repository>
+            <id>JBoss repository</id>
+            <url>http://repository.jboss.com/maven2/</url>
+        </repository>
+    </repositories>
 </project>
