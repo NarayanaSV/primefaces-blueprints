@@ -10,8 +10,9 @@
 			<p:contextMenu for="cars">
 				<p:menuitem value="View Advisor List" update="display"
 					icon="ui-icon-search" oncomplete="PF('$advisorprofile').show()" />
-				<p:menuitem value="Dealer Profile" update="dealerinfo"  />
-				<p:menuitem value="Delete Dealer" update="dealerinfo" icon="ui-icon-close"
+				<p:menuitem value="Dealer Profile" update="dealerinfo" />
+				<p:menuitem value="Delete Dealer" update="dealerinfo"
+					icon="ui-icon-close"
 					actionListener="#{dealerController.deleteDealer}" />
 			</p:contextMenu>
 
@@ -48,6 +49,13 @@
 						<h:outputText value="Advisor Number" />
 					</f:facet>
 					<h:outputText value="#{dealer.advisornumber}" />
+				</p:column>
+
+				<p:column sortBy="dor" filterBy="dor" id="dor">
+					<f:facet name="header">
+						<h:outputText value="Date of registration" />
+					</f:facet>
+					<h:outputText value="#{dealer.dor}" />
 				</p:column>
 
 				<p:column sortBy="status" filterBy="status" id="status">
