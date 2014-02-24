@@ -11,9 +11,9 @@
 				<p:menuitem value="View Advisor List" update="display"
 					icon="ui-icon-search" oncomplete="PF('$advisorprofile').show()" />
 				<p:menuitem value="Dealer Profile" update="cars"
-					icon="ui-icon-close" actionListener="#{dealerController.deleteCar}" />
+					icon="ui-icon-close" actionListener="#{dealerController.deleteAdvisor}" />
 				<p:menuitem value="Delete Dealer" update="cars" icon="ui-icon-close"
-					actionListener="#{dealerController.deleteCar}" />
+					actionListener="#{dealerController.deleteAdvisor}" />
 			</p:contextMenu>
 
 			<p:dataTable id="dataTable" var="dealer"
@@ -64,8 +64,6 @@
 						paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5,10,15" type="none">  
    							 Year:#{progress.year},Profite percentage: #{progress.percentage} 
-   						<h:outputText value="#{car.manufacturer}, #{car.year}"
-							style="margin-left:10px" />
 						<br />
 					</p:dataList>
 
