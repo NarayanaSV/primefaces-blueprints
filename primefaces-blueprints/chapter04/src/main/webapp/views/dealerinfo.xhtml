@@ -50,14 +50,19 @@
 					</f:facet>
 					<h:outputText value="#{dealer.advisornumber}" />
 				</p:column>
-
+			    <p:column sortBy="branch" filterBy="status" id="branch">
+					<f:facet name="header">
+						<h:outputText value="branch" />
+					</f:facet>
+					<h:outputText value="#{dealer.branch}" />
+				</p:column>
 				<p:column sortBy="dor" filterBy="dor" id="dor">
 					<f:facet name="header">
 						<h:outputText value="Date of registration" />
 					</f:facet>
 					<h:outputText value="#{dealer.dor}" />
 				</p:column>
-
+                
 				<p:column sortBy="status" filterBy="status" id="status">
 					<f:facet name="header">
 						<h:outputText value="Status" />
