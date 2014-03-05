@@ -1,6 +1,7 @@
 package com.packtpub.pf.blueprint.controller;
 
 import com.packtpub.pf.blueprint.persistence.entity.Category;
+import com.packtpub.pf.blueprint.persistence.entity.Discount;
 import com.packtpub.pf.blueprint.persistence.entity.Order;
 import com.packtpub.pf.blueprint.persistence.entity.Product;
 import com.packtpub.pf.blueprint.service.ProductService;
@@ -69,6 +70,49 @@ public class ProductController implements java.io.Serializable {
 
     //Category Related Ends
 
+    //Discount Related starts..
+
+    private Discount discount;
+    private List<Discount> discounts = new ArrayList<>();
+
+    public List<Discount> getDiscounts() {
+        return discounts;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
+    public void changeDiscount(Discount discount) {
+        this.discount = discount;
+        _log.info("Discount Changed to :" + discount);
+    }
+
+    public void updateDiscount() {
+
+        ps.addDiscount(discount);
+        discounts = ps.getAllDiscounts();
+        _log.info("Successfully Updated Discount : " + discount);
+    }
+
+    public void addNewDiscount() {
+        _log.info("About to Create New Discount...");
+        this.discount = new Discount();
+        this.discount.setCreateDate(new Date());
+    }
+
+    public void removeDiscount(long id) {
+
+        ps.removeDiscount(id);
+        discounts = ps.getAllDiscounts();
+        _log.info("Successfully Deleted Discounts : " + id);
+    }
+
+    //Discount Related Ends here
 
     private long categoryId = 0;
     private Product product;

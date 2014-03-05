@@ -23,6 +23,7 @@
         </property>
 
         <mapping class="com.packtpub.pf.blueprint.persistence.entity.Category"/>
+        <mapping class="com.packtpub.pf.blueprint.persistence.entity.Discount"/>
         <mapping class="com.packtpub.pf.blueprint.persistence.entity.Product"/>
         <mapping class="com.packtpub.pf.blueprint.persistence.entity.Order"/>
 

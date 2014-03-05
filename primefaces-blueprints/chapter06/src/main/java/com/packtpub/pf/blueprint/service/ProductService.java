@@ -2,6 +2,7 @@ package com.packtpub.pf.blueprint.service;
 
 import com.packtpub.pf.blueprint.persistence.HibernateUtil;
 import com.packtpub.pf.blueprint.persistence.entity.Category;
+import com.packtpub.pf.blueprint.persistence.entity.Discount;
 import com.packtpub.pf.blueprint.persistence.entity.Product;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -52,6 +53,36 @@ public class ProductService {
     public void removeCategory(long id) {
         org.hibernate.Transaction tx = getSession().beginTransaction();
         Object o = getSession().get(Category.class, id);
+        if (o != null) {
+            getSession().delete(o);
+        }
+        tx.commit();
+        getSession().close();
+        _log.info("Removed Successfully....");
+    }
+
+    public List getAllDiscounts() {
+        org.hibernate.Transaction tx = getSession().beginTransaction();
+        List list = getSession().createCriteria(Discount.class).list();
+        tx.commit();
+        getSession().close();
+        _log.info("Got all List of Discounts: " + list);
+        return list;
+    }
+
+    public void addDiscount(Discount c) {
+        if (c != null) {
+            org.hibernate.Transaction tx = getSession().beginTransaction();
+            getSession().saveOrUpdate(c);
+            tx.commit();
+            getSession().close();
+            _log.info("Added Successfully....");
+        }
+    }
+
+    public void removeDiscount(long id) {
+        org.hibernate.Transaction tx = getSession().beginTransaction();
+        Object o = getSession().get(Discount.class, id);
         if (o != null) {
             getSession().delete(o);
         }
